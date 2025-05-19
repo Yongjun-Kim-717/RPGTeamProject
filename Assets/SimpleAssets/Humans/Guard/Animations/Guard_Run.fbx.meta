@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 22a19c931e68e2a4f9725140ba397406
+AssetOrigin:
+  serializedVersion: 1
+  productId: 310092
+  packageName: Humans army - Guard
+  packageVersion: 1.0
+  assetPath: Assets/SimpleAssets/Humans/Guard/Animations/Guard_Run.fbx
+  uploadId: 732011
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -47,7 +52,7 @@ ModelImporter:
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -124,8 +129,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 11cd82315c26766498f7b844a94a49cb,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 11cd82315c26766498f7b844a94a49cb, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
@@ -137,10 +141,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 310092
-  packageName: Humans army - Guard
-  packageVersion: 1.0
-  assetPath: Assets/SimpleAssets/Humans/Guard/Animations/Guard_Run.fbx
-  uploadId: 732011
