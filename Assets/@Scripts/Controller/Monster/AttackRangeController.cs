@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using extension;
 
 // * 공격 범위 컨트롤러 스크립트
 public class AttackRangeController : MonoBehaviour

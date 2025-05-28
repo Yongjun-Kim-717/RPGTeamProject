@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: aa845ddbd2b44a146a5ef3bc78925071
+AssetOrigin:
+  serializedVersion: 1
+  productId: 313145
+  packageName: Demons army - Devil
+  packageVersion: 1.0
+  assetPath: Assets/SimpleAssets/Demons/Devil/Animations/Devil_WALK.fbx
+  uploadId: 738394
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -14,10 +21,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    removeConstantScaleCurves: 0
+    removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -47,7 +52,7 @@ ModelImporter:
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
@@ -120,15 +125,15 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: 
+    rootMotionBoneName: Armature
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 519e9dd93615cae4697d172c53b345b8, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
@@ -136,10 +141,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 313145
-  packageName: Demons army - Devil
-  packageVersion: 1.0
-  assetPath: Assets/SimpleAssets/Demons/Devil/Animations/Devil_WALK.fbx
-  uploadId: 738394

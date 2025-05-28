@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (transform.position.z >= 108.2)
+        if (transform.position.z >= 113.2)
         {
             Vector3 pos = transform.position;
             pos.z = 5;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
 
             Vector3 newPos = transform.position;
             newPos.x = Mathf.Clamp(transform.position.x, -23, 23);
-            newPos.z = Mathf.Clamp(transform.position.z, 3, transform.position.z);
+            newPos.z = Mathf.Clamp(transform.position.z, 2, transform.position.z);
             transform.position = newPos;
             _animator.SetFloat(Define.Speed, movement.magnitude);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), _speed * Time.deltaTime);
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.linearVelocity = new Vector3(0, _rigidbody.linearVelocity.y, 0);
             _animator.SetFloat(Define.Speed, 0);
         }
-        Debug.Log(_rigidbody.linearVelocity.y);
+        //Debug.Log(_rigidbody.linearVelocity.y);
     }
 
     public void Attack()

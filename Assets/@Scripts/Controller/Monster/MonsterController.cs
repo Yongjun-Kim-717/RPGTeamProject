@@ -1,4 +1,5 @@
 using UnityEngine;
+using extension;
 
 // * Monster Status 구조체
 //- Scriptable Object의 런타임 복사용으로 활용
@@ -38,6 +39,7 @@ public abstract class MonsterController : MonoBehaviour
     private MonsterStatus _runtimeData;
     private Animator _animator;
     private AttackRangeController _attackRangeController;
+    private Rigidbody _rigidbody;
 
     //bool _isAttacking = false;
 
@@ -49,6 +51,11 @@ public abstract class MonsterController : MonoBehaviour
     private void Update()
     {
         MoveToTarget(_target.transform.position);
+    }
+
+    private void FixedUpdate()
+    {
+        //MoveToTarget(_target.transform.position);
     }
 
     private void Start()
@@ -63,6 +70,7 @@ public abstract class MonsterController : MonoBehaviour
     {
         _runtimeData = new MonsterStatus(_monsterData);
         _animator = GetComponent<Animator>();
+        _rigidbody = GetComponent<Rigidbody>();
         _target = GameObject.Find(Define.PlayerTag);
 
         GameObject attackRange = new GameObject("AttackRange");
@@ -82,7 +90,10 @@ public abstract class MonsterController : MonoBehaviour
             Vector3 targetDir = (targetPos - transform.position).normalized;
 
             transform.position += targetDir * _runtimeData.Speed * Time.deltaTime;
-            transform.rotation = Quaternion.LookRotation(targetDir, Vector3.up);
+
+            Quaternion toRotation = Quaternion.LookRotation(targetDir, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 10 * Time.deltaTime);
+            //transform.rotation = Quaternion.LookRotation(targetDir, Vector3.up);
 
             _animator.SetFloat(Define.WalkSpeed, _runtimeData.Speed / 2);
             _animator.SetTrigger(Define.Walk);
@@ -139,7 +150,7 @@ public abstract class MonsterController : MonoBehaviour
     //- start주기함수에서 실행
     public virtual void Spawned()
     {
-        Instantiate(_monsterData.SpawnEffect);
+        //Instantiate(_monsterData.SpawnEffect);
     }
 
     // * 플레이어 충돌 및 공격 중일 시 데미지 계산

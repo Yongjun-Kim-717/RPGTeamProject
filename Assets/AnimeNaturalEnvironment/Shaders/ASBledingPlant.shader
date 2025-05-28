@@ -167,11 +167,11 @@ Shader "AwaiiStudio/URP_BlendingPlant"
 			#pragma vertex vert
 			#pragma fragment frag
 
-			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/UnityInstancing.hlsl"
-			#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
+			//#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderGraphFunctions.hlsl"
 
 			#if ASE_SRP_VERSION <= 70108
 			#define REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR
@@ -277,7 +277,7 @@ Shader "AwaiiStudio/URP_BlendingPlant"
 			#ifdef LIGHTMAP_ON
 				return SampleLightmap( uvStaticLightmap, normalWS );
 			#else
-				return SampleSH(normalWS);
+				//return SampleSH(normalWS);
 			#endif
 			}
 			

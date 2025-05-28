@@ -1,5 +1,9 @@
 using UnityEngine;
 
+// * 싱글톤 디자인 스크립트
+//- 모든 매니저 스크립트에서 상속
+//- 첫 Instance 호출 시 생성 및 부모 연결
+//- Manager.Instance.CreateManager()로 생성 및 초기화
 public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
 {
     protected static T _instance = null;
@@ -31,5 +35,16 @@ public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    // * 매니저 생성 및 초기화 메서드
+    public void CreateManager()
+    {
+        Initialize();
+    }
+
+    protected virtual void Initialize()
+    {
+
     }
 }

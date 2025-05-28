@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-//Å¸°ÙÇü ½ºÅ³¿¡ ºÎÂøµÉ ½ºÅ©¸³Æ®
+//Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®
 public class DefaultSkill : Skill
 {
     private PlayerController _player;
@@ -12,30 +12,30 @@ public class DefaultSkill : Skill
     protected override void ActivateSkill()
     {
 
-        //¹üÀ§ ³» °¡Àå °¡±î¿î ÀûÀ» Ã£´Â´Ù
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½Â´ï¿½
         Transform target = GetNearestTarget(_skillData.targetDistance)?.transform;
 
         if (target != null)
         {
-            //ÇöÀç ½ºÅ©¸³Æ®°¡ ÇÃ·¹ÀÌ¾î¿¡ ºÙ¾îÀÖ´Ù°í °¡Á¤
+            //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å©ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¿¡ ï¿½Ù¾ï¿½ï¿½Ö´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-            //Å¸°Ù ¹æÇâÀ¸·Î ½ºÅ³ ¹æÇâ ¼³Á¤
+            //Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             Vector3 dir = (target.position - transform.position).normalized;
 
-            //ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ ½ºÅ³ »ý¼º
+            //ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½
             //transform.position = _player.Center;
             transform.rotation = Quaternion.LookRotation(dir);
             gameObject.SetActive(true);
-            StartCoroutine(DeActivateSkill()); //½ºÅ³ ½ÃÀü ÈÄ ½ºÅ³ ºñÈ°¼ºÈ­
+            StartCoroutine(DeActivateSkill()); //ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½È°ï¿½ï¿½È­
         }
     }
 
     GameObject GetNearestTarget(float distance)
     {
-        //È°¼ºÈ­µÈ enemy¸¦ Ã£¾Æ list Å¸ÀÔÀ¸·Î ¹ÝÈ¯
+        //È°ï¿½ï¿½È­ï¿½ï¿½ enemyï¿½ï¿½ Ã£ï¿½ï¿½ list Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         ////var targetList = _enemyList.Where(enemy => enemy.gameObject.activeSelf).ToList();
 
-        ////°Å¸® ¼øÀ¸·Î Á¤·ÄÇÏ¿© °¡Àå °¡±î¿î ÀûÀ» ¹ÝÈ¯
+        ////ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
         //var target = targetList.OrderBy(
         //    enemy => (_player.Center - enemy.transform.position).sqrMagnitude).FirstOrDefault();
 

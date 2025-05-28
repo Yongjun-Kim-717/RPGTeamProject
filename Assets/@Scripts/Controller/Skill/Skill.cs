@@ -17,23 +17,23 @@ public abstract class Skill : MonoBehaviour
         StartCoroutine(SkillRoutine());
     }
 
-    //½ºÅ³ ÄðÅ¸ÀÓ ÄÚ·çÆ¾
+    //ï¿½ï¿½Å³ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     IEnumerator SkillRoutine()
     {
-        //¹«ÇÑ·çÇÁ
-        //³ªÁß¿¡ breakÇÒ °Å Á¤ÇØ¾ß ÇÔ
+        //ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½ß¿ï¿½ breakï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½
         while (true)
         {
-            yield return _skillCoolTime; //½ºÅ³ ÄðÅ¸ÀÓÀÌ ´Ù Â÷¸é
-            ActivateSkill(); //½ºÅ³ ¹ßµ¿
+            yield return _skillCoolTime; //ï¿½ï¿½Å³ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+            ActivateSkill(); //ï¿½ï¿½Å³ ï¿½ßµï¿½
         }
     }
 
 
-    //½ÇÁ¦·Î ½ºÅ³ È°¼ºÈ­
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ È°ï¿½ï¿½È­
     protected abstract void ActivateSkill();
 
-    //½ºÅ³ ½ÃÀü ÈÄ ÇØ´ç ½ºÅ³ ºñÈ°¼ºÈ­
+    //ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½È°ï¿½ï¿½È­
     protected IEnumerator DeActivateSkill()
     {
         yield return _skillDurationTime;
