@@ -7,10 +7,8 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
 {
     protected static T _instance = null;
-
-    public static bool IsInstance => _instance != null;
-    public static T TryGetInstance() => IsInstance ? _instance : null;
-
+    //public static bool IsInstance => _instance != null;
+    //public static T TryGetInstance() => IsInstance ? _instance : null;
     public static T Instance
     {
         get
