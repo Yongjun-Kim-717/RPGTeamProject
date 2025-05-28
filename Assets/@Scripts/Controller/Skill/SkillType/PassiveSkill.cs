@@ -9,6 +9,6 @@ public class PassiveSkill : Skill
 
     void Start()
     {
-        
+
     }
 }

@@ -2,21 +2,26 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-//í”Œë ˆì´ì–´ì— ë¶€ì°©í•  ìŠ¤í¬ë¦½íŠ¸
+//ÇÃ·¹ÀÌ¾î¿¡ ºÎÂøÇÒ ½ºÅ©¸³Æ®
 public class SkillSystem : MonoBehaviour
 {
-    //í”Œë ˆì´ì–´ì˜ ìŠ¤í‚¬ ë¦¬ìŠ¤íŠ¸ - ìŠ¤í‚¬ ìŠ¬ë¡¯
+    //ÇÃ·¹ÀÌ¾îÀÇ ½ºÅ³ ¸®½ºÆ® - ½ºÅ³ ½½·Ô
     [SerializeField] List<Skill> _skillList = new List<Skill>();
 
-    // ìŠ¤í‚¬ ìŠ¬ë¡¯ ë¦¬ìŠ¤íŠ¸ - ì•¡í‹°ë¸Œí˜• ìŠ¤í‚¬ ë³´ê´€ ìŠ¬ë¡¯
-    public List<SkillSlot> _slotList = new List<SkillSlot>();
+    // ½ºÅ³ ½½·Ô ¸®½ºÆ® - ¾×Æ¼ºêÇü ½ºÅ³ º¸°ü ½½·Ô
+    List<SkillSlot> _slotList = new List<SkillSlot>();
 
-    public void InitializeSkillSystem()
+    private void Awake()
     {
-        foreach(var skill in _skillList)
+        InitializeSkillSystem();
+    }
+
+    void InitializeSkillSystem()
+    {
+        foreach (var skill in _skillList)
         {
-            // íŒ¨ì‹œë¸Œë©´ íš¨ê³¼ ì ìš©ë§Œ ì‹œí‚¤ê³ 
-            // ì•¡í‹°ë¸Œë©´ ìŠ¬ë¡¯ ë§Œë“¤ì–´ì„œ ì €ì¥ ë° ê´€ë¦¬
+            // ÆĞ½Ãºê¸é È¿°ú Àû¿ë¸¸ ½ÃÅ°°í
+            // ¾×Æ¼ºê¸é ½½·Ô ¸¸µé¾î¼­ ÀúÀå ¹× °ü¸®
             GameObject go = new GameObject(skill.name + " slot");
             go.transform.SetParent(transform);
             go.transform.localPosition = new Vector3(0, 0.5f, 0);
@@ -24,5 +29,59 @@ public class SkillSystem : MonoBehaviour
             slot.SetSkill(skill);
             _slotList.Add(slot);
         }
+
     }
+
+    public void TestAttack()
+    {
+        //_skillList[0]?.StartAttack();
+        //SkillAttack();
+    }
+
+
+    //#region Skill Queue
+    //Queue<GameObject> _skillQueue = new Queue<GameObject>();
+    //Dictionary<Skill, GameObject> _skillDictionary = new Dictionary<Skill, GameObject>();
+
+    //[SerializeField] SkillData[] skillList;
+    //public static Action<GameObject> OnEnqueueSkill;
+    //public static Action<SkillTest> OnSkillCoolTime;
+
+    //void InitializeSkill()
+    //{
+    //    OnEnqueueSkill += EnqueueSkill;
+    //    //skillList = Resources.LoadAll<SkillTest>("");
+    //    for (int i = 0; i < skillList.Length; i++)
+    //    {
+    //        var skillObject = Instantiate(skillList[i], transform).skillPrefab;
+    //        skillObject.GetComponent<Skill>()?.Initialize(skillList[i]);
+    //        _skillQueue.Enqueue(skillObject);
+    //    }
+    //}
+
+    //void EnqueueSkill(GameObject skill)
+    //{
+    //    _skillQueue.Enqueue(skill);
+    //}
+
+    //void SkillAttack()
+    //{
+    //    //if (_skillQueue.Count > 0 && !_animator.GetBool(Define.IsAttacking))
+    //    if(_skillQueue.Count > 0)
+    //    {
+    //        _skillQueue.Dequeue().GetComponent<Skill>().StartAttack();
+    //    }
+    //}
+
+    //public void AddDictionary(GameObject skill)
+    //{
+    //    _skillDictionary.Add(skill.GetComponent<Skill>(), skill);
+    //}
+
+    //public void RemoveDictionary(GameObject skill)
+    //{
+    //    _skillDictionary.Remove(skill.GetComponent<Skill>());
+    //    _skillQueue.Enqueue(skill);
+    //}
+    //#endregion
 }

@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class AoENonTargetSkill : NonTargetSkill
 {
-    PenetrationColliderController _coll;
-
+    MonsterSkillColliderController _coll;
+  
     void Start()
     {
         Initialize();
@@ -12,7 +13,7 @@ public class AoENonTargetSkill : NonTargetSkill
     public override void Initialize()
     {
         base.Initialize();
-        _coll = GetComponentInChildren<PenetrationColliderController>();
+        _coll = GetComponentInChildren<MonsterSkillColliderController>();
         _coll.SetColliderInfo(_skillData.damage, _skillData.connectedSkillPrefab, _skillData.hitEffectPrefab);
     }
 }

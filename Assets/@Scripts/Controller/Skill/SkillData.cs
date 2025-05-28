@@ -11,10 +11,10 @@ public class SkillData : ScriptableObject
     public float damage;
     public float speed;
     public float force;
-    public float angle;                   //DirectionNonTarget 각도
     public GameObject connectedSkillPrefab;
     public GameObject hitEffectPrefab;
     public Define.SkillType skillType;
     public Define.MotionType motionType;
     public Define.HandlerType handlerType;
 }
+

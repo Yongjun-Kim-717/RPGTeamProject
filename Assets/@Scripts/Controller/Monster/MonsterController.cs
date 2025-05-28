@@ -83,12 +83,12 @@ public abstract class MonsterController : MonoBehaviour
     {
         if(!_animator.GetBool(Define.IsAttacking))
         {
-            //Debug.Log("걷는중");
+            Debug.Log("걷는중");
             
             Vector3 targetDir = (targetPos - transform.position).normalized;
             transform.position += targetDir * _runtimeData.Speed * Time.deltaTime;
             //transform.Translate(targetPos*Time.deltaTime);
-            //Debug.Log($"transform local position : {transform.localPosition}, targetPos : {targetPos}, targetDir.y : {targetDir}");
+            Debug.Log($"transform local position : {transform.localPosition}, targetPos : {targetPos}, targetDir.y : {targetDir}");
             Quaternion toRotation = Quaternion.LookRotation(targetDir, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, 10 * Time.deltaTime);
 
@@ -109,7 +109,7 @@ public abstract class MonsterController : MonoBehaviour
         {
             _animator.SetBool(Define.IsAttacking, true);
             _animator.SetTrigger(Define.Attack);
-            //Debug.Log("공격 중");
+            Debug.Log("공격 중");
         }
     }
 
@@ -119,7 +119,7 @@ public abstract class MonsterController : MonoBehaviour
     {
         _animator.SetBool(Define.IsAttacking, false);
         _animator.SetTrigger(Define.EndAttack);
-        //Debug.Log("공격 종료");
+        Debug.Log("공격 종료");
     }
 
     // * 방어력 미적용 데미지 계산 메서드
@@ -135,8 +135,8 @@ public abstract class MonsterController : MonoBehaviour
     {
         float finalDamage = damage - _runtimeData.Def > 0 ? damage - _runtimeData.Def : 0;
         _runtimeData.HP -= damage;
-        //if (_runtimeData.HP <= 0)
-        //    Die();
+        if (_runtimeData.HP <= 0)
+            Die();
     }
 
     // * 사망 메서드
@@ -149,10 +149,10 @@ public abstract class MonsterController : MonoBehaviour
 
     // * 생성 메서드
     //- start주기함수에서 실행
-    public virtual void Spawned()
-    {
-        Instantiate(_monsterData.SpawnEffect);
-    }
+    //public virtual void Spawned()
+    //{
+    //    Instantiate(_monsterData.SpawnEffect);
+    //}
 
     // * 플레이어 충돌 및 공격 중일 시 데미지 계산
     //- stay로 처리했기에 피격 쿨타임을 적용 시켜 밸런스 조정 필요

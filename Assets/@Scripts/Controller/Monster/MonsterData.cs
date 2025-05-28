@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Objects/Monsters")]
 public class MonsterData : ScriptableObject
 {
-    public GameObject SpawnEffect;      // 스폰 이펙트
     public GameObject DeadEffect;       // 사망 이펙트
     public string Name;                 // 이름
     public string Description;          // 설명

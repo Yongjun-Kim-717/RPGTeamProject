@@ -1,16 +1,28 @@
+
+using System;
+using System.Collections;
 using UnityEngine;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : Singleton<TimeManager>
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Action<float> OnTimeChanged;
+    [SerializeField] float _time;
+    [SerializeField] float _monsterTime;
+
+
+    private void OnEnable()
     {
-        
+        _monsterTime = 180;
+        StartCoroutine(StartTimer());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator StartTimer()
     {
-        
+        while (_monsterTime > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            _monsterTime -= 1;
+            OnTimeChanged?.Invoke(_monsterTime);
+        }
     }
 }

@@ -2,14 +2,15 @@ using UnityEngine;
 
 public class RigidbodyTargetSkill : TargetSkill
 {
-    CrashColliderController _coll;
+
+    MonsterSkillColliderController _coll;
     Rigidbody _rigidbody;
 
     public override void Initialize()
     {
         base.Initialize();
         _rigidbody = GetComponentInChildren<Rigidbody>();
-        _coll = GetComponentInChildren<CrashColliderController>();
+        _coll = GetComponentInChildren<MonsterSkillColliderController>();
         _coll.SetColliderInfo(_skillData.damage, _skillData.connectedSkillPrefab, _skillData.hitEffectPrefab);
     }
 
@@ -22,5 +23,4 @@ public class RigidbodyTargetSkill : TargetSkill
         dir.y = _rigidbody.linearVelocity.y;
         _rigidbody.linearVelocity = dir * _skillData.force;
     }
-
 }

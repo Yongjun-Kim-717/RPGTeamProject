@@ -1,12 +1,5 @@
 fileFormatVersion: 2
 guid: 2a6752187ce62ae4abff80af6f6566dd
-AssetOrigin:
-  serializedVersion: 1
-  productId: 313145
-  packageName: Demons army - Devil
-  packageVersion: 1.0
-  assetPath: Assets/SimpleAssets/Demons/Devil/Animations/Devil_RUN.fbx
-  uploadId: 738394
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -23,6 +16,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -141,3 +136,10 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 313145
+  packageName: Demons army - Devil
+  packageVersion: 1.0
+  assetPath: Assets/SimpleAssets/Demons/Devil/Animations/Devil_RUN.fbx
+  uploadId: 738394

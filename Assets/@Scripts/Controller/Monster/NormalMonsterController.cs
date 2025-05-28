@@ -9,6 +9,6 @@ public class NormalMonsterController : MonsterController
 
     private void Update()
     {
-        //MoveToTarget(_target.transform.position);
+        MoveToTarget(_target.transform.position);
     }
 }

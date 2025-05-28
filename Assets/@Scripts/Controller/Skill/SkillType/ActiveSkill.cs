@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class ActiveSkill : Skill
 {
-    // ìŠ¤í‚¬ ì˜¤ë¸Œì íŠ¸ í™œì„±í™” + ëª¨ì…˜ ì‹¤í–‰ + ë¹„í™œì„±í™” ì½”ë£¨í‹´
+    protected Animator _animator;
+
+    // ½ºÅ³ ¿ÀºêÁ§Æ® È°¼ºÈ­ + ¸ğ¼Ç ½ÇÇà + ºñÈ°¼ºÈ­ ÄÚ·çÆ¾
     public override void ActivateSkill(Transform target = null, Vector3 pos = default)
     {
-        //í”Œë ˆì´ì–´ ìœ„ì¹˜ì— ìŠ¤í‚¬ í™œì„±í™”
+        //ÇÃ·¹ÀÌ¾î À§Ä¡¿¡ ½ºÅ³ È°¼ºÈ­
         gameObject.SetActive(true);
         transform.position = pos;
-        // particle systemì¸ ê²½ìš°
+        // particle systemÀÎ °æ¿ì
         ParticleSystem particleSystem = gameObject.GetComponent<ParticleSystem>();
         if (particleSystem != null)
-        {
             particleSystem.Play();
-        }
 
-        //ìŠ¤í‚¬ ì‹œì „ í›„ ìŠ¤í‚¬ ë¹„í™œì„±í™”
+        //½ºÅ³ ½ÃÀü ÈÄ ½ºÅ³ ºñÈ°¼ºÈ­
         StartCoroutine(DeActivateSkill());
     }
 

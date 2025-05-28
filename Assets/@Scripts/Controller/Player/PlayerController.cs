@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody _rigidbody;
     SkillSystem _skillSystem;
     [SerializeField] float _speed = 10f;
+    Vector2 _moveDir;
+    float _limitZ = 113.2f;
 
     void Start()
     {
@@ -22,24 +24,15 @@ public class PlayerController : MonoBehaviour
 
     void Initialize()
     {
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.PlayerTag), LayerMask.NameToLayer(Define.PlayerSkillLayer));
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.MonsterTag), LayerMask.NameToLayer(Define.MonsterSkillLayer));
         _animator = GetComponent<Animator>();
         _rigidbody = GetComponent<Rigidbody>();
         _skillSystem = GetComponent<SkillSystem>();
-        _skillSystem.InitializeSkillSystem();
-        foreach (var slot in _skillSystem._slotList)
-        {
-            if (slot._skill.SkillData.skillType == Define.SkillType.RigidbodyTarget || slot._skill.SkillData.skillType == Define.SkillType.TransformTarget)
-            {
-                slot._skill.GetComponent<TargetSkill>().OnSkillSet += Rotate;
-            }
-        }
+        GameManager.Instance.OnMoveDirChanged += dir => _moveDir = dir;
     }
 
     void Move()
     {
-        if (transform.position.z >= 113.2)
+        if (transform.position.z >= _limitZ)
         {
             Vector3 pos = transform.position;
             pos.z = 5;

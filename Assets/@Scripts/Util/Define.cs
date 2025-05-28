@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class Define
+public class Define : MonoBehaviour
 {
-    public static string SkillDictionary = "SkillDictionary";
-
     #region Animator
     public readonly static int Idle = Animator.StringToHash("Idle");
     public readonly static int Attack = Animator.StringToHash("Attack");
@@ -38,11 +36,10 @@ public class Define
     public Vector3 SpawnSpot1 = new Vector3();
     #endregion
 
-
-    #region Enum
+    #region enum
     public enum SkillType
     {
-        RigidbodyTarget,
+        RigidBodyTarget,
         TransformTarget,
         AoENonTarget,
         DirectionNonTarget,
@@ -60,7 +57,7 @@ public class Define
     {
         Player,
         Monster,
-        Skill,
+        Skill
     }
     #endregion
 }

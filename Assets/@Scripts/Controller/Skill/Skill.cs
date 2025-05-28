@@ -1,5 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public abstract class Skill : MonoBehaviour
 {
@@ -7,7 +9,7 @@ public abstract class Skill : MonoBehaviour
     protected WaitForSeconds _skillCoolTime;
     protected WaitForSeconds _skillDurationTime;
 
-    public SkillData SkillData {  get { return _skillData; } }
+    public SkillData SkillData { get { return _skillData; } }
 
     public virtual void Initialize()
     {
@@ -15,10 +17,8 @@ public abstract class Skill : MonoBehaviour
         _skillDurationTime = new WaitForSeconds(_skillData.durationTime);
     }
 
-    //실제로 스킬 활성화
     public abstract void ActivateSkill(Transform target = null, Vector3 pos = default);
 
-    //스킬 시전 후 해당 스킬 비활성화
     protected IEnumerator DeActivateSkill()
     {
         yield return _skillDurationTime;

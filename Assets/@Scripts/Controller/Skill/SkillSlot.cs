@@ -2,40 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Animations;
 
 /// SkillSlot
-/// Targetí˜• ìŠ¤í‚¬ë“¤ì„ ë³´ê´€ ë° ìŠ¤í‚¬ ì¿¨íƒ€ì„ ê´€ë¦¬í•˜ëŠ” ìŠ¬ë¡¯
-/// NonTargetí˜• ìŠ¤í‚¬ë“¤ì€ ì¿¨ë˜ë©´ ì•Œì•„ì„œ ë°œë™ë˜ë¯€ë¡œ í•„ìš”ì—†ì„ë“¯(ì¼ë‹¨ì€)
+/// TargetÇü ½ºÅ³µéÀ» º¸°ü ¹× ½ºÅ³ ÄğÅ¸ÀÓ °ü¸®ÇÏ´Â ½½·Ô
+/// NonTargetÇü ½ºÅ³µéÀº ÄğµÇ¸é ¾Ë¾Æ¼­ ¹ßµ¿µÇ¹Ç·Î ÇÊ¿ä¾øÀ»µí(ÀÏ´ÜÀº)
 public class SkillSlot : MonoBehaviour
 {
-    // ìŠ¤í‚¬ ìŠ¬ë¡¯ì—ëŠ” ì•¡í‹°ë¸Œí˜• ìŠ¤í‚¬ë§Œ ì €ì¥
-    public ActiveSkill _skill;
+    // ½ºÅ³ ½½·Ô¿¡´Â ¾×Æ¼ºêÇü ½ºÅ³¸¸ ÀúÀå
+    ActiveSkill _skill;
     PlayerController _player;
     Animator _animator;
     Transform _target;
     bool _isTargetExist;
 
-    // ìŠ¬ë¡¯ì— ë“±ë¡ëœ ìŠ¤í‚¬ì˜ ì‚¬ìš© ê°€ëŠ¥ ì—¬ë¶€
+    // ½½·Ô¿¡ µî·ÏµÈ ½ºÅ³ÀÇ »ç¿ë °¡´É ¿©ºÎ
     public bool IsActivatePossible { get; set; }
 
     private void Awake()
     {
-        // ë‚˜ì¤‘ì— ê²Œì„ë§¤ë‹ˆì €ì—ì„œ ê°€ì ¸ì˜¤ë“ ì§€ í•  ì˜ˆì •
+        // ³ªÁß¿¡ °ÔÀÓ¸Å´ÏÀú¿¡¼­ °¡Á®¿ÀµçÁö ÇÒ ¿¹Á¤
         _player = FindAnyObjectByType<PlayerController>();
         _animator = _player.GetComponent<Animator>();
         IsActivatePossible = false;
     }
 
-    // ì²˜ìŒ ìŠ¬ë¡¯ ìƒì„± ì‹œ ìŠ¤í‚¬ ë“±ë¡
+    // Ã³À½ ½½·Ô »ı¼º ½Ã ½ºÅ³ µî·Ï
     public void SetSkill(Skill skill)
     {
-        // ë§¨ ì²˜ìŒì—” ì‚¬ìš© ê°€ëŠ¥í•œ ìƒíƒœ
+        // ¸Ç Ã³À½¿£ »ç¿ë °¡´ÉÇÑ »óÅÂ
         IsActivatePossible = true;
-        _skill = Instantiate(skill).GetComponent<ActiveSkill>();
-
-        // íƒ€ê²Ÿì´ í•„ìš”í•œ ìŠ¤í‚¬ì¸ì§€ ì•„ë‹Œì§€ ì²´í¬
-        if (_skill.SkillData.skillType == Define.SkillType.RigidbodyTarget || _skill.SkillData.skillType == Define.SkillType.TransformTarget)
+        _skill = Instantiate(skill, transform).GetComponent<ActiveSkill>();
+        _skill.transform.localPosition = Vector3.zero;
+        // Å¸°ÙÀÌ ÇÊ¿äÇÑ ½ºÅ³ÀÎÁö ¾Æ´ÑÁö Ã¼Å©
+        if (_skill.SkillData.skillType == Define.SkillType.TransformTarget || _skill.SkillData.skillType == Define.SkillType.RigidBodyTarget)
         {
             _isTargetExist = true;
         }
@@ -45,7 +44,7 @@ public class SkillSlot : MonoBehaviour
         }
         _skill.Initialize();
         _skill.gameObject.SetActive(false);
-        // ìŠ¤í‚¬ ì˜¤ë¸Œì íŠ¸ ìƒì„±ë˜ë©´ í™œì„±í™”
+        // ½ºÅ³ ¿ÀºêÁ§Æ® »ı¼ºµÇ¸é È°¼ºÈ­
         IsActivatePossible = true;
     }
 
@@ -57,28 +56,28 @@ public class SkillSlot : MonoBehaviour
 
     private void Update()
     {
-        // ì¿¨íƒ€ì„ ì´ˆê¸°í™”ë˜ì–´ ìŠ¤í‚¬ ì‚¬ìš© ê°€ëŠ¥í•œ ê²½ìš°
+        // ÄğÅ¸ÀÓ ÃÊ±âÈ­µÇ¾î ½ºÅ³ »ç¿ë °¡´ÉÇÑ °æ¿ì
         if (IsActivatePossible)
         {
-            // Targetí˜• ìŠ¤í‚¬ì¸ ê²½ìš°
+            // TargetÇü ½ºÅ³ÀÎ °æ¿ì
             if (_isTargetExist)
             {
-                // ê°€ì¥ ê°€ê¹Œìš´ íƒ€ê²Ÿì„ íƒìƒ‰í•˜ê³ , ìˆìœ¼ë©´ ìŠ¤í‚¬ ë°œë™
+                // °¡Àå °¡±î¿î Å¸°ÙÀ» Å½»öÇÏ°í, ÀÖÀ¸¸é ½ºÅ³ ¹ßµ¿
                 _target = GetNearestTarget(_skill.SkillData.targetDistance)?.transform;
                 if (_target != null)
                 {
                     IsActivatePossible = false;
                     _skill.ActivateSkill(_target, transform.position);
-                    //SetAnimator(_bulletSkill.SkillData.motionType);
+                    SetAnimator(_skill.SkillData.motionType);
                     StartCoroutine(CoStartCoolTime());
                 }
             }
-            // Targetí˜• ìŠ¤í‚¬ì´ ì•„ë‹Œ ê²½ìš°
+            // TargetÇü ½ºÅ³ÀÌ ¾Æ´Ñ °æ¿ì
             else
             {
                 IsActivatePossible = false;
                 _skill.ActivateSkill(null, transform.position);
-                //SetAnimator(_bulletSkill.SkillData.motionType);
+                SetAnimator(_skill.SkillData.motionType);
                 StartCoroutine(CoStartCoolTime());
             }
         }
@@ -89,7 +88,7 @@ public class SkillSlot : MonoBehaviour
         switch (motionType)
         {
             case Define.MotionType.Sword:
-                // ê³µê²© ëª¨ì…˜ ì¤‘ì¼ ê²½ìš° ëª¨ì…˜ì€ ìƒëµ
+                // °ø°İ ¸ğ¼Ç ÁßÀÏ °æ¿ì ¸ğ¼ÇÀº »ı·«
                 if (!_animator.GetBool(Define.IsAttacking))
                 {
                     _animator.SetTrigger(Define.Attack);
@@ -110,13 +109,13 @@ public class SkillSlot : MonoBehaviour
     {
         if (_player == null)
             _player = FindAnyObjectByType<PlayerController>();
-        //ê±°ë¦¬ ë‚´ì˜ monster collider íƒìƒ‰
+        //°Å¸® ³»ÀÇ monster collider Å½»ö
         Collider[] targets = Physics.OverlapSphere(_player.transform.position, distance, 1 << LayerMask.NameToLayer(Define.MonsterTag));
         if (targets == null)
             return null;
         HashSet<Collider> neighbors = new HashSet<Collider>(targets);
 
-        //ê±°ë¦¬ ìˆœìœ¼ë¡œ ì •ë ¬í•˜ì—¬ ê°€ì¥ ê°€ê¹Œìš´ ì ì„ ë°˜í™˜
+        //°Å¸® ¼øÀ¸·Î Á¤·ÄÇÏ¿© °¡Àå °¡±î¿î ÀûÀ» ¹İÈ¯
         var neighbor = neighbors.OrderBy(coll => (_player.transform.position - coll.transform.position).sqrMagnitude).FirstOrDefault();
         if (neighbor == null)
             return null;
