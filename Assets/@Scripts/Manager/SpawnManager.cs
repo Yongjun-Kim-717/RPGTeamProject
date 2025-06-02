@@ -12,7 +12,7 @@ public class SpawnManager : Singleton<SpawnManager>, IEventSubscriber
 
     public void Subscribe()
     {
-        DungeonManager.Instance.OnDungeonEnter += 
+       
     }
 
     void SetSpawner()

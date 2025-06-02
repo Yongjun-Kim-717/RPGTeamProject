@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6349830372973106040}
   - component: {fileID: 2400933484504747502}
-  - component: {fileID: 3461448816961100726}
+  - component: {fileID: 243258322882557670}
   m_Layer: 0
   m_Name: UI_CutScene
   m_TagString: Untagged
@@ -152,7 +152,7 @@ PlayableDirector:
     - 508973ed086ed81439e767a479ae20f2: {fileID: 0}
     - 0f164db0f88db3e40aa823fffbc4bfea: {fileID: 0}
     - 979926680bd852f45a67a8ff099bdd87: {fileID: 0}
---- !u!114 &3461448816961100726
+--- !u!114 &243258322882557670
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
