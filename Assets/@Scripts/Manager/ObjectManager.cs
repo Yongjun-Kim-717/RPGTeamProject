@@ -7,15 +7,15 @@ using static extension.Extension;
 //- 모든 프리팹을 Load한다.
 public class ObjectManager : Singleton<ObjectManager>
 {
-
     #region Resources
     // * Dictionary<이름, 프리팹 오브젝트>
     private Dictionary<string, GameObject> _monsterResourceList;
     private Dictionary<string, GameObject> _namedMonsterResourceList;
     private Dictionary<string, GameObject> _monsterSkillResourceList;
-    private Dictionary<string, GameObject> _monsterSkillHitResourceList;
+    private Dictionary<string, GameObject> _monsterSkillHitEffectResourceList;
     private Dictionary<string, GameObject> _playerSkillResourceList;
-    private Dictionary<string, GameObject> _playerSkillHitResourceList;
+    private Dictionary<string, GameObject> _playerSkillHitEffectResourceList;
+    private Dictionary<string, GameObject> _damageTextResourceList;
 
     // * GameObject : 인게임 오브젝트
     private GameObject _playerResource;
@@ -26,6 +26,9 @@ public class ObjectManager : Singleton<ObjectManager>
     // * UI Object
     private GameObject _popupCanvas;
     private GameObject _popupPanel;
+
+    // * CutScene
+    private GameObject _goblinKingCutScene;
 
     // * 프로퍼티
     public Dictionary<string, GameObject> MonsterResourceList 
@@ -55,13 +58,13 @@ public class ObjectManager : Singleton<ObjectManager>
             return _monsterSkillResourceList;
         } 
     }
-    public Dictionary <string, GameObject> MonsterSkillHitResourceList
+    public Dictionary <string, GameObject> MonsterSkillHitEffectResourceList
     {
         get
         {
-            if (NullCheck(_monsterSkillHitResourceList))
+            if (NullCheck(_monsterSkillHitEffectResourceList))
                 return null;
-            return _monsterSkillHitResourceList;
+            return _monsterSkillHitEffectResourceList;
         }
     }
     public Dictionary<string, GameObject> PlayerSkillResourceList 
@@ -73,13 +76,22 @@ public class ObjectManager : Singleton<ObjectManager>
             return _playerSkillResourceList; 
         }
     }
-    public Dictionary <string, GameObject> PlayerSkillHitResourceList
+    public Dictionary<string, GameObject> PlayerSkillHitEffectResourceList
     {
         get
         {
-            if (NullCheck(_playerSkillHitResourceList))
+            if (NullCheck(_playerSkillHitEffectResourceList))
                 return null;
-            return _playerSkillHitResourceList;
+            return _playerSkillHitEffectResourceList;
+        }
+    }
+    public Dictionary<string, GameObject > DamageTextResourceList
+    {
+        get
+        {
+            if (NullCheck(_damageTextResourceList))
+                return null;
+            return _damageTextResourceList;
         }
     }
 
@@ -138,6 +150,16 @@ public class ObjectManager : Singleton<ObjectManager>
             return _popupPanel;
         }
     }
+
+    public GameObject GoblinKingCutScene
+    {
+        get
+        {
+            if (NullCheck(_goblinKingCutScene))
+                return null;
+            return _goblinKingCutScene;
+        }
+    }
     #endregion
 
     #region Override
@@ -148,9 +170,10 @@ public class ObjectManager : Singleton<ObjectManager>
         _monsterResourceList = new Dictionary<string, GameObject>();
         _namedMonsterResourceList = new Dictionary<string, GameObject>();
         _monsterSkillResourceList = new Dictionary<string, GameObject>();
-        _monsterSkillHitResourceList = new Dictionary<string, GameObject>();
+        _monsterSkillHitEffectResourceList = new Dictionary<string, GameObject>();
         _playerSkillResourceList = new Dictionary<string, GameObject>();
-        _playerSkillHitResourceList = new Dictionary<string, GameObject>();
+        _playerSkillHitEffectResourceList = new Dictionary<string, GameObject>();
+        _damageTextResourceList = new Dictionary<string, GameObject>();
     }
     #endregion
 
@@ -162,7 +185,9 @@ public class ObjectManager : Singleton<ObjectManager>
         DungeonObjectResourceLoad();
         SkillResourceLoad();
         MonsterResourceLoad();
+        DamageTextResourceLoad();
         PopupUIResourceLoad();
+        CutSceneResourceLoad();
     }
 
     // * 플레이어 리소스 로드 메서드
@@ -180,12 +205,12 @@ public class ObjectManager : Singleton<ObjectManager>
     // * 스킬 리소스 로드 메서드
     private void SkillResourceLoad()
     {
-        if(!NullCheck(_monsterSkillResourceList, _monsterSkillHitResourceList, _playerSkillResourceList, _playerSkillResourceList))
+        if(!NullCheck(_monsterSkillResourceList, _monsterSkillHitEffectResourceList, _playerSkillResourceList, _playerSkillResourceList))
         {
             Resources.LoadAll<GameObject>(Define.MonsterSkillPath).ToList(_monsterSkillResourceList);
-            Resources.LoadAll<GameObject>(Define.MonsterSkillHitEffectPath).ToList(_monsterSkillHitResourceList);
+            Resources.LoadAll<GameObject>(Define.MonsterSkillHitEffectPath).ToList(_monsterSkillHitEffectResourceList);
             Resources.LoadAll<GameObject>(Define.PlayerSkillPath).ToList(_playerSkillResourceList);
-            Resources.LoadAll<GameObject>(Define.PlayerSkillHitEffectPath).ToList(_playerSkillResourceList);
+            Resources.LoadAll<GameObject>(Define.PlayerSkillHitEffectPath).ToList(_playerSkillHitEffectResourceList);
         }
         else
         {
@@ -205,11 +230,28 @@ public class ObjectManager : Singleton<ObjectManager>
             Debug.Log("Can't Load because of monster list is null");
         }
     }
+    // * 데미지 텍스트 리소스 로드 메서드
+    private void DamageTextResourceLoad()
+    {
+        if(!NullCheck(_damageTextResourceList))
+        {
+            Resources.LoadAll<GameObject>(Define.DamageTextPath).ToList(_damageTextResourceList);
+        }
+        else
+        {
+            Debug.Log("Can't Load because of DamageText list is null");
+        }
+    }
     // * 팝업 UI 리소스 로드 메서드
     private void PopupUIResourceLoad()
     {
         _popupCanvas = Resources.Load<GameObject>(Define.PopupUICanvasPath);
         _popupPanel = Resources.Load<GameObject>(Define.PopupEnterDungeonPanelPath);
+    }
+    // * 컷신 리소스 로드 메서드
+    private void CutSceneResourceLoad()
+    {
+        _goblinKingCutScene = Resources.Load<GameObject>(Define.GoblinKingCutScenePath);
     }
     #endregion
 
@@ -231,7 +273,12 @@ public class ObjectManager : Singleton<ObjectManager>
         }
         else if(type == typeof(Skill))
         {
-            GameObject obj = Instantiate<GameObject>(PlayerSkillResourceList[name], spawnPos, Quaternion.identity);
+            GameObject obj = Instantiate(PlayerSkillResourceList[name], spawnPos, Quaternion.identity);
+            return obj;
+        }
+        else if(type == typeof(DamageTextController))
+        {
+            GameObject obj = Instantiate(DamageTextResourceList[name], spawnPos, Quaternion.identity);
             return obj;
         }
         return null;

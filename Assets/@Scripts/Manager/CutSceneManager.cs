@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class CutSceneManager : MonoBehaviour
+public class CutSceneManager : Singleton<CutSceneManager>, IDeactivateObject
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private GameObject _cutScene;
+
+    protected override void Initialize()
     {
-        
+        base.Initialize();
+        _cutScene = Instantiate(ObjectManager.Instance.GoblinKingCutScene);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Deactivate()
     {
-        
+        _cutScene.SetActive(false);
+    }
+    public void PlayCutScene()
+    {
+        _cutScene?.SetActive(true);
+        _cutScene.GetComponent<CutSceneController>().PlayCutScene();
     }
 }

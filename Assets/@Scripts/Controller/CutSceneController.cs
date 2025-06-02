@@ -20,16 +20,16 @@ public class CutSceneController : MonoBehaviour
     {
         _playableDirector = GetComponent<PlayableDirector>();
         _playableDirector.stopped += FinishCutScene;
+        _mainCamera = Camera.main;
     }
 
     private void Start()
     {
         _monsterAppearEffect = Instantiate(_monsterAppearEffectPrefab);
         _monsterAppearEffect.SetActive(false);
-        PlayCutScene();
     }
 
-    void PlayCutScene()
+    public void PlayCutScene()
     {
         GameObject monster = GameObject.FindGameObjectWithTag(Define.MonsterTag);
         _monsterAppearEffect.transform.position = monster.transform.position;

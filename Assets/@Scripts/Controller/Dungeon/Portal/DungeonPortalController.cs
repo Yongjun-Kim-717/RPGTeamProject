@@ -21,6 +21,7 @@ public class DungeonPortalController : MonoBehaviour
     {
         _boxCollider = gameObject.GetOrAddComponent<BoxCollider>();
         _boxCollider.isTrigger = true;
+        _boxCollider.size = new Vector3(1.5f, 2, 0.5f);
     }
 
     // * 트리거 엔터 시

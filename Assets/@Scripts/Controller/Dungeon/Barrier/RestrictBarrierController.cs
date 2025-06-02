@@ -8,13 +8,18 @@ public class RestrictBarrierController : MonoBehaviour
     public ParticleSystem _particleSystem;
     public float DurationTime = 1.5f;
 
-    public GameObject WavePrefab;
+    private GameObject _shieldEffectPrefab;
 
     private void Awake()
     {
+        Initialize();
+    }
+
+    void Initialize()
+    {
         _boxCollider = GetComponent<BoxCollider>();
-        _particleSystem = WavePrefab.GetComponent<ParticleSystem>();
-        //_material = GetComponent<Material>();
+        _shieldEffectPrefab = ObjectManager.Instance.ShieldEffectResource;
+        _particleSystem = _shieldEffectPrefab.GetComponent<ParticleSystem>();
     }
 
     // * 던전 벽 충돌 시 Fade 처리 및 충돌 이펙트 생성
@@ -24,24 +29,10 @@ public class RestrictBarrierController : MonoBehaviour
         {
             StopCoroutine(FadeIn());
             StartCoroutine(FadeIn());
-            Instantiate(WavePrefab, new Vector3(collision.gameObject.transform.position.x, 2, transform.position.z), Quaternion.AngleAxis(90f, Vector3.right));
+            Instantiate(_shieldEffectPrefab, new Vector3(collision.gameObject.transform.position.x, 2, transform.position.z), Quaternion.identity);
             //_particleSystem.Play();
         }
     }
-
-    //private void OnCollisionStay(Collision collision)
-    //{
-    //    float coolTime = 10f;
-    //    if(collision.gameObject.CompareTag("Player"))
-    //    {
-    //        if(coolTime >= 10f)
-    //        {
-    //            Instantiate(WavePrefab, new Vector3(collision.gameObject.transform.position.x, 2, transform.position.z), Quaternion.AngleAxis(90f, Vector3.right));
-    //            coolTime = 0f;
-    //        }
-    //        coolTime += Time.deltaTime;
-    //    }
-    //}
 
     private void OnCollisionExit(Collision collision)
     {

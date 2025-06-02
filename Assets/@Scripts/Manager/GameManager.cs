@@ -12,19 +12,22 @@ public class GameManager : Singleton<GameManager>
         Initialize();
         EventSubscribeAll();
         DeactivateObjectsAll();
+        Settings();
     }
 
     // * 초기화 메서드
     protected override void Initialize()
     {
         base.Initialize();
-        //스위치케이스
+
         ObjectManager.Instance.CreateManager();
         ObjectManager.Instance.ResourceLoad();
 
         DungeonManager.Instance.CreateManager();
 
         PopupUIManager.Instance.CreateManager();
+
+        SpawnManager.Instance.CreateManager();
     }
 
     // * 이벤트 구독 메서드
@@ -32,6 +35,7 @@ public class GameManager : Singleton<GameManager>
     {
         DungeonManager.Instance.Subscribe();
         PopupUIManager.Instance.Subscribe();
+        SpawnManager.Instance.Subscribe();
     }
 
     // * 오브젝트 비활성화 메서드
@@ -40,4 +44,12 @@ public class GameManager : Singleton<GameManager>
         DungeonManager.Instance.Deactivate();
         PopupUIManager.Instance.Deactivate();
     }
+    
+    private void Settings()
+    {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.PlayerTag), LayerMask.NameToLayer(Define.PlayerSkillLayer));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.MonsterTag), LayerMask.NameToLayer(Define.MonsterSkillLayer));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.MonsterAttackRangeLayer), LayerMask.NameToLayer(Define.MonsterSkillLayer));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer(Define.MonsterAttackRangeLayer), LayerMask.NameToLayer(Define.PlayerSkillLayer));
+    }    
 }

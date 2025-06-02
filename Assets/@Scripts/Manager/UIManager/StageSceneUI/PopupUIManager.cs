@@ -28,7 +28,7 @@ public class PopupUIManager : Singleton<PopupUIManager>, IEventSubscriber, IDeac
     public void Subscribe()
     {
         ButtonEnterDungeon.onClick.AddListener(OnDungeonEnter);
-        DungeonManager.Instance.DungeonPortal.GetOrAddComponent<DungeonPortalController>().OnPotalEnter += PopupUI;
+        //DungeonManager.Instance.DungeonPortal.GetOrAddComponent<DungeonPortalController>().OnPotalEnter += PopupUI;
     }
     #endregion
 

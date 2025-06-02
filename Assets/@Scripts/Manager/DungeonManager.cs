@@ -49,7 +49,9 @@ public class DungeonManager : Singleton<DungeonManager>, IEventSubscriber, IDeac
     #region IEventSubscriber
     public void Subscribe()
     {
-        PopupUIManager.Instance.OnButtonDungeonEnterClick += EnterDungeon;
+        //PopupUIManager.Instance.OnButtonDungeonEnterClick += EnterDungeon;
+        _portalController.OnPotalEnter += EnterDungeon;
+        _portalController.OnPotalClose += SetWallUp;
     }
     #endregion
 
@@ -59,24 +61,42 @@ public class DungeonManager : Singleton<DungeonManager>, IEventSubscriber, IDeac
         DungeonWallFront.SetActive(false);
         DungeonWallBack.SetActive(false);
         DungeonPortal.SetActive(false);
+
+        SetDungeon();
     }
     #endregion
+
+    // * 던전 생성 메서드
+    private void SetDungeon()
+    {
+        DungeonWallFront.SetActive(true);
+        DungeonWallFront.transform.position = Define.DungeonEnterSpot;
+        DungeonWallBack.SetActive(true);
+        DungeonWallBack.transform.position = Define.DungeonExitSpot;
+        DungeonPortal.SetActive(true);
+        DungeonPortal.transform.position = Define.DungeonEnterPortalSpot;
+    }
 
     // * 포탈 입장 액션 구독 메서드
     //- 던전 입장 기능
     private void EnterDungeon()
     {
-        Debug.Log("던전 입장");
         SetWallDown();
+        OnDungeonEnter?.Invoke();
     }
 
+
+    private void SetPortalOn()
+    {
+        _dungeonPortal.SetActive(true);
+    }
     private void SetWallDown()
     {
         _dungeonWallFront.SetActive(false);
+        _dungeonWallBack.SetActive(false);
     }
-
     private void SetWallUp()
     {
-        _dungeonWallFront.SetActive(true);
+        _dungeonWallBack.SetActive(true);
     }
 }
