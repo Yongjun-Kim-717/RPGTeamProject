@@ -47,6 +47,7 @@ public class ManagerRoot : MonoBehaviour
         StageManager.Instance.CreateManager();
 
         CutSceneManager.Instance.CreateManager();
+
         TimeManager.Instance.CreateManager();
 
         EnvironmentManager.Instance.CreateManager();
