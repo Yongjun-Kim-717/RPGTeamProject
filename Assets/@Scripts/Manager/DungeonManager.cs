@@ -196,7 +196,7 @@ public class DungeonManager : Singleton<DungeonManager>, IEventSubscriber, IDeac
     private void SetClearPortalOn()
     {
         _dungeonExitPortal.SetActive(true);
-        _dungeonExitPortal.transform.position = Define.DungeonExitPortalSpot;
+        _dungeonExitPortal.transform.position = Define.DungeonExitPortalSpot + DungeonOffSet;
     }
     private void SetWallDown()
     {
