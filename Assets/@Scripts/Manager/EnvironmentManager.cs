@@ -2,7 +2,6 @@ using extension;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class EnvironmentManager : Singleton<EnvironmentManager>, IEventSubscriber
