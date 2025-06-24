@@ -41,7 +41,7 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
         {
             _isDoubleSpeed = value;
             _toKey = _isDoubleSpeed ? 0.2f : 1;
-            _standardTime = new WaitForSeconds(_toKey);
+            _standardTime = new WaitForSeconds(_toKey); // 레퍼런스타입이라 new로 매번 생성하면 GC 메모리 낭비
             EnvironmentManager.Instance.ToKey = _toKey;
             OnTimeSpeedChanged?.Invoke(_currentTime);
         }
