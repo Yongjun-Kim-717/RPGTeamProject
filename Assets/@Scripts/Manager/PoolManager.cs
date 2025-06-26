@@ -20,7 +20,7 @@ public class PoolManager : Singleton<PoolManager>
         _parentObjectList = new Dictionary<string, GameObject>();
     }
 
-    public GameObject GetObjectFromPool<T>(Vector3 spawnPos, string name, Transform parent = default) where T : MonoBehaviour
+    public GameObject GetObjectFromPool<T>(Vector3 spawnPos, string name) where T : MonoBehaviour
     {
         // 오브젝트 풀 리스트에 해당 name의 오브젝트 리스트가 존재하는지 검사
         if (_poolList.ContainsKey(name))
@@ -37,12 +37,8 @@ public class PoolManager : Singleton<PoolManager>
                     return _poolList[name][i];
                 }
             }
-            // 존재하지 않을 때 일반 몬스터인지 검사 후 일반 몬스터는 개체 수 제한
-            //if (_poolList[name][0].GetComponent<NormalMonsterController>() != null && _poolList[name].Count >= _limitOfNormalMonsterCount)
-            //    return null;
-            
             // 오브젝트 매니저의 Spawn 메서드로 동적 생성 및 풀 리스트 등록
-            GameObject obj = ObjectManager.Instance.GetObject<T>(spawnPos, name, parent);
+            GameObject obj = ObjectManager.Instance.GetObject<T>(spawnPos, name);
             obj.transform.SetParent(_parentObjectList[name].transform, false);
             _poolList[name].Add(obj);
             return obj;
@@ -57,7 +53,7 @@ public class PoolManager : Singleton<PoolManager>
                 _parentObjectList.Add(name, go);
             }
             // 동적으로 오브젝트 생성 후 풀링리스트 동적 생성 및 추가
-            var obj = ObjectManager.Instance.GetObject<T>(spawnPos, name, parent);
+            var obj = ObjectManager.Instance.GetObject<T>(spawnPos, name);
             obj.transform.SetParent(_parentObjectList[name].transform, false);
             List<GameObject> newList = new List<GameObject>();
             newList.Add(obj);

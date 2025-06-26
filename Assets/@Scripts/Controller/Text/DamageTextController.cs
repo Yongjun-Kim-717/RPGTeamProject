@@ -7,11 +7,6 @@ public class DamageTextController : MonoBehaviour
     WaitForSeconds _deActiveTime = new WaitForSeconds(1.0f);
     public Vector3 _originPos;
 
-    //private void Awake()
-    //{
-    //    _originPos = transform.position;
-    //}
-
     private void OnEnable()
     {
         StartCoroutine(DeActivateTime());

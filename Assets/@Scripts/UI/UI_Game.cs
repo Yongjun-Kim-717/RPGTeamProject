@@ -64,6 +64,7 @@ public class UI_Game : MonoBehaviour
         };
 
         OnDoubleSpeedChanged += (flag) => TimeManager.Instance.IsDoubleSpeed = flag;
+        _player.OnJourneyExpChanged += OnSystemMessage;
     }
 
     private void ReleaseEvent()
@@ -186,15 +187,17 @@ public class UI_Game : MonoBehaviour
         }
     }
 
-    void OnSystemMessage(string text)
+    void OnSystemMessage(float score)
     {
+        string text = $"여정의 증표 {score} 획득";
         SystemTextController[] activeTexts = _systemTextPanel.GetComponentsInChildren<SystemTextController>(false);
         foreach(SystemTextController activeText in activeTexts)
         {
             activeText.UpEffect();
         }
 
-        GameObject systemText = PoolManager.Instance.GetObjectFromPool<SystemTextController>(new Vector3(50,0,0), "SystemText", _systemTextPanel.transform);
+        GameObject systemText = PoolManager.Instance.GetObjectFromPool<SystemTextController>(new Vector3(50,378,0), "SystemText");
+        systemText.gameObject.transform.SetParent(_systemTextPanel.transform, true);
         systemText.GetComponent<SystemTextController>().SetText(text);
     }
 }

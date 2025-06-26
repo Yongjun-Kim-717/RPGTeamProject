@@ -31,7 +31,7 @@ public class PopupUI_AdventureInfo : MonoBehaviour
 
     private void OnDisable()
     {
-        if(PlayerManager.Instance.Player != null)
+        if(PlayerManager.Instance != null && PlayerManager.Instance.Player != null)
         {
             PlayerManager.Instance.Player.OnJourneyExpChanged -= UpdateJourneyExp;
             PlayerManager.Instance.Player.OnJourneyRankChanged -= UpdateJourneyRank;
@@ -44,7 +44,6 @@ public class PopupUI_AdventureInfo : MonoBehaviour
         _currentJourneyExp = _currentPlayerData.JourneyExp;
         _currentJourneyRank = _journeyRankData.index;
 
-        _journeyGaugeBarImage.color = _journeyRankData.textColor;
         _journeyGaugeBarImage.fillAmount = _currentJourneyExp / _journeyRankData.maxAdventure;
         _journeyExpText.text = _currentJourneyExp.ToString(); //모험 게이지
         UpdateJourneyUI();
@@ -79,6 +78,7 @@ public class PopupUI_AdventureInfo : MonoBehaviour
         _minJourneyExpText.text = _journeyRankData.minAdventure.ToString();
         _maxJourneyExpText.text = _journeyRankData.maxAdventure.ToString();
         _rankImage.sprite = _journeyRankData.rankImage;
+        _journeyGaugeBarImage.color = _journeyRankData.textColor;
     }
 
     IEnumerator UpdateAdventureGauge(float journeyExp)

@@ -42,7 +42,7 @@ public class Define : MonoBehaviour
     public const string SkyBoxPath = "SkyBox";
     public const string BackgroundPath = "Environment/Background";
     public const string DamageTextPath = "UI/Text/DamageText";
-    public const string SystemTextPath = "UI/Text/SystemText";
+    public const string SystemTextPath = "UI/Text/SystemText/Text - SystemMessage";
     public const string PlayerVitalCanvasPath = "UI/PlayerVital/UI_Vital";
     public const string PlayerVitalPath = "UI/PlayerVital/PlayerVital";
 

@@ -512,7 +512,7 @@ public class ObjectManager : Singleton<ObjectManager>
     #endregion
 
     #region InstantiateObjectMethod
-    public GameObject GetObject<T>(Vector3 spawnPos, string name, Transform parent = default) where T : MonoBehaviour
+    public GameObject GetObject<T>(Vector3 spawnPos, string name) where T : MonoBehaviour
     {
         Type type = typeof(T);
         if(type == typeof(PlayerController))

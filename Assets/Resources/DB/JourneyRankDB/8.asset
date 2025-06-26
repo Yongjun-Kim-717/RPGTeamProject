@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: 8
   m_EditorClassIdentifier: 
   index: 8
-  medalType: 2
+  rankType: 2
   name: "\uAE08\uBA54\uB2EC2"
   minAdventure: 5710
   maxAdventure: 8510
   textColor: {r: 0.8392157, g: 0.70980394, b: 0.20392157, a: 1}
+  rankImage: {fileID: 21300000, guid: 1429165a25fc15a47a4d197af4f8870c, type: 3}
