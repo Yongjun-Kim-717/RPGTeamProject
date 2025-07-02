@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     // 데이터는 getter만 되도록?
     public PlayerData PlayerData { get { return _playerData; } }
-    public Inventory Inventory { get { return _inventory; } }
+    public Inventory Inventory{ get { return _inventory; } }
     public PlayerStatus PlayerStatus { get { return _runtimeData; } }
 
     public float HP

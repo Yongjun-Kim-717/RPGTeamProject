@@ -11,6 +11,7 @@ public class UI_Game : MonoBehaviour
     [SerializeField] Button _statusButton;
     [SerializeField] Button _inventoryButton;
     [SerializeField] Button _gainedGoodsButton;
+    [SerializeField] Button _createDungeonPortalButton;
     [SerializeField] TMP_Text _silverCoinText;
     [SerializeField] TMP_Text _gemText;
     [SerializeField] Toggle _autoToggle;
@@ -43,6 +44,7 @@ public class UI_Game : MonoBehaviour
         _statusButton.onClick.AddListener(OnStatusButtonClick);
         _inventoryButton.onClick.AddListener(OnInventoryButtonClick);
         _gainedGoodsButton.onClick.AddListener(OnGainedGoodsButtonClick);
+        _createDungeonPortalButton.onClick.AddListener(OnCreateDungeonButtonClick);
         _silverCoinText.text = _inventoryData.silverCoin.ToString();
         _autoToggle.onValueChanged.AddListener(OnAutoToggleClick);
         _doubleSpeedToggle.onValueChanged.AddListener(OnDoubleSpeedToggleClick);
@@ -50,13 +52,13 @@ public class UI_Game : MonoBehaviour
 
         OnAutoChanged += (flag) => PlayerManager.Instance.IsAuto = flag;
         _player.OnAutoOff += OnAutoToggleOff;
-        //_player.OnAutoDungeonChallenge += () =>
-        //{
-        //    if (PlayerManager.Instance.IsAuto)
-        //    {
-        //        OnCreateDungeonButtonClick();
-        //    }
-        //};
+        _player.OnAutoDungeonChallenge += () =>
+        {
+            if (PlayerManager.Instance.IsAuto)
+            {
+                OnCreateDungeonButtonClick();
+            }
+        };
 
         OnDoubleSpeedChanged += (flag) => TimeManager.Instance.IsDoubleSpeed = flag;
         _player.OnJourneyExpChanged += OnSystemMessage;
@@ -149,6 +151,14 @@ public class UI_Game : MonoBehaviour
         PopupUIManager.Instance.ActivateGainedRecordPanel(Define.GoodsType.None, 0);
     }
 
+    void OnCreateDungeonButtonClick()
+    {
+        FieldManager.Instance.DungeonController.CreateDungeon();
+        FieldManager.Instance.DungeonController.OnDungeonExit -= ActivateDungeonPortalButton;
+        FieldManager.Instance.DungeonController.OnDungeonExit += ActivateDungeonPortalButton;
+        _createDungeonPortalButton.gameObject.SetActive(false);
+    }
+
     void OnAutoToggleClick(bool flag)
     {
         //Debug.Log($"Auto: {flag}");
@@ -166,13 +176,13 @@ public class UI_Game : MonoBehaviour
         _autoToggle.isOn = false;
     }
 
-    //void ActivateDungeonPortalButton()
-    //{
-    //    if(!PlayerManager.Instance.IsAuto)
-    //    {
-    //        _createDungeonPortalButton.gameObject.SetActive(true);
-    //    }
-    //}
+    void ActivateDungeonPortalButton()
+    {
+        if(!PlayerManager.Instance.IsAuto)
+        {
+            _createDungeonPortalButton.gameObject.SetActive(true);
+        }
+    }
 
     void OnSystemMessage(float score)
     {

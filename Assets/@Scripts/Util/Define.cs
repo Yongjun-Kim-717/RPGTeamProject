@@ -41,13 +41,11 @@ public class Define : MonoBehaviour
     public const string DungeonPortalPath = "Dungeon/Object/DungeonPortal";
     public const string MonsterGatePath = "Dungeon/Object/HellGate";
     public const string FieldObjectSpawnSpotPath = "Field/SpawnSpots";
-    public const string FieldObjectsPath = "Field/Objects";
-    public const string TreasureOpenEffectPath = "Field/Effect/TreasureOpenEffect";
+    public const string FieldObjectPath = "Field/Objects";
     public const string SkyBoxPath = "SkyBox";
     public const string BackgroundPath = "Environment/Background";
     public const string DamageTextPath = "UI/Text/DamageText";
     public const string SystemTextPath = "UI/Text/SystemText/Text - SystemMessage";
-    public const string TreasureTextPath = "UI/Text/TreasureText/Text - Treasure";
     public const string PlayerVitalCanvasPath = "UI/PlayerVital/UI_Vital";
     public const string PlayerVitalPath = "UI/PlayerVital/PlayerVital";
 
@@ -61,7 +59,6 @@ public class Define : MonoBehaviour
     public const string PopupJourneyInfoPanelPath = "UI/PopupUI/Panel - JourneyInfo";
     public const string PopupStageInfoPanelPath = "UI/PopupUI/Panel - StageInfo";
     public const string PopupNamedMonsterInfoPanelPath = "UI/PopupUI/Panel - NamedMonsterInfo";
-    public const string PopupMerchantPanelPath = "UI/PopupUI/MerchantPanel - Popup";
 
     public const string GoblinKingCutScenePath = "CutScene/GoblinCutScene";
     public const string FollowCameraPath = "Camera/FollowPlayerCamera";
@@ -72,12 +69,12 @@ public class Define : MonoBehaviour
 
     #region DungeonSpots
     public static Vector3 FirstEnterSpot = new Vector3(0, 3, 0);
-    public static Vector3 DungeonEnterSpot = new Vector3(0, 5, 30);
-    public static Vector3 DungeonExitSpot = new Vector3(0, 5, 100);
-    public static Vector3 DungeonEnterPortalSpot = new Vector3(0, 2.5f, 60);
-    public static Vector3 DungeonExitPortalSpot = new Vector3(0, 2.5f, 99f);
+    public static Vector3 DungeonEnterSpot = new Vector3(0, 5, -35);
+    public static Vector3 DungeonExitSpot = new Vector3(0, 5, 35);
+    public static Vector3 DungeonEnterPortalSpot = new Vector3(0, 2.5f, 5);
+    public static Vector3 DungeonExitPortalSpot = new Vector3(0, 2.5f, 34f);
     #endregion
-    
+
     #region MonsterSpawnSpots
     public static Vector3 SpawnSpot1 = new Vector3(-7, 7, 0);
     public static Vector3 SpawnSpot2 = new Vector3(7, 7, 0);
@@ -165,8 +162,6 @@ public class Define : MonoBehaviour
 
     public enum JourneyEventType
     {
-        Dungeon,
-        OtherObject,
         TreasureBox,
         Merchant,
     }
@@ -175,7 +170,9 @@ public class Define : MonoBehaviour
     {
         JourneyExp,
         SilverCoin,
+        DungeonTicket,
         Gem,
+        EnhancementStone,
     }
     
     public enum ItemValue

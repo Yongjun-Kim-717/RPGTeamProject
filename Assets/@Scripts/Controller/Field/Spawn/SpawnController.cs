@@ -8,7 +8,8 @@ using Unity.VisualScripting;
 public class SpawnController : MonoBehaviour
 {
     Dictionary<string, GameObject> _fieldObjectSpawnSpotList;
-    Dictionary<string, GameObject> _fieldObjectList;
+    private Dictionary<string, GameObject> _fieldObjectList;
+
     private NormalSpawnerController _normalSpawner;
     private NamedSpawnerController _namedSpawner;
 
@@ -45,11 +46,12 @@ public class SpawnController : MonoBehaviour
 
     void DeactivateObject()
     {
-        foreach (var obj in _fieldObjectList)
+        foreach(var obj in _fieldObjectList)
         {
             obj.Value.SetActive(false);
         }
     }
+
     private void OnEnable()
     {
         Subscribe();
@@ -108,28 +110,29 @@ public class SpawnController : MonoBehaviour
     //현재대로만 한다면 PlayerManager의 Player 프로퍼티를 받아 바로 이벤트 구독하자
     void SetEvent(Define.JourneyEventType type)
     {
+        //기존에 활성화 됐던 오브젝트들 비활성화
         DeactivateObject();
 
-        //필드 지날 때 발생하는 이벤트가 던전이 아닐 때만
-        if (type != Define.JourneyEventType.Dungeon)
-            ActivateObject(type);
+        //오브젝트 활성화
+        ActivateObject(type);
     }
 
     void ActivateObject(Define.JourneyEventType type)
     {
-        string spawnNumber = Random.Range(1, 6).ToString();
+        string spawnNumber = Random.Range(1, 5).ToString(); 
 
         //랜덤 위치 받기
         Vector3 spawnPos = _fieldObjectSpawnSpotList["FieldObjectSpawnSpot" + spawnNumber].transform.position;
-
-        string objectName = "TreasureBox";
+        
+        string objectName;
         switch (type)
         {
+            case Define.JourneyEventType.TreasureBox:
+                objectName = "TreasureBox"; break;
             case Define.JourneyEventType.Merchant:
                 objectName = "Merchant"; break;
-            case Define.JourneyEventType.OtherObject:
-                //우선은 그냥 확률 똑같이
-                objectName = "OtherObject" + Random.Range(1, 4).ToString(); break;
+            default:
+                objectName = "Other"; break;
         }
         _fieldObjectList[objectName].transform.position = spawnPos;
         _fieldObjectList[objectName].SetActive(true);

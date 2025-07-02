@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone BaseMap.png.meta
-guid: 87b1675fe0a2f554380c909858de206e
-========
 <<<<<<<< HEAD:Assets/MoCapCentral/MC_FixBuild/Characters/MCUnity/Textures/T_BodyR_Color.png.meta
 guid: 854cb911a30167641b17984badebdffb
 ========
 guid: 76cbeb51dd042f845b7b7f7348852e34
 >>>>>>>> Develop:Assets/Free_Icons/Icons/1024/19204.png.meta
->>>>>>>> Develop:Assets/MoCapCentral/MC_FixBuild/Characters/MCUnity/Textures/T_BodyR_Color.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -28,16 +24,12 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-<<<<<<<< HEAD:Assets/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone BaseMap.png.meta
-  isReadable: 0
-========
     flipGreenChannel: 0
   isReadable: 1
->>>>>>>> Develop:Assets/MoCapCentral/MC_FixBuild/Characters/MCUnity/Textures/T_BodyR_Color.png.meta
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -76,6 +68,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
   cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
@@ -88,6 +81,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -100,18 +94,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -141,22 +124,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable: {}
-  spritePackingTag: 
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-<<<<<<<< HEAD:Assets/Sitting Lion Statue/Textures/Seated Lion Stone/Seated Lion Stone BaseMap.png.meta
-  productId: 260994
-  packageName: Sitting Lion Statue
-  packageVersion: 1.0
-  assetPath: Assets/AK Studio Art/Sitting Lion Statue/Textures/Seated Lion Stone/Seated
-    Lion Stone BaseMap.png
-  uploadId: 675463
-========
 <<<<<<<< HEAD:Assets/MoCapCentral/MC_FixBuild/Characters/MCUnity/Textures/T_BodyR_Color.png.meta
   productId: 290463
   packageName: MC Fix & Build - Believable 3D Animations by MoCap Central
@@ -170,4 +144,3 @@ AssetOrigin:
   assetPath: Assets/Free_Icons/Icons/1024/19204.png
   uploadId: 678006
 >>>>>>>> Develop:Assets/Free_Icons/Icons/1024/19204.png.meta
->>>>>>>> Develop:Assets/MoCapCentral/MC_FixBuild/Characters/MCUnity/Textures/T_BodyR_Color.png.meta

@@ -279,6 +279,7 @@ public class EnvironmentManager : Singleton<EnvironmentManager>, IEventSubscribe
     //스카이박스를 변경하는 함수
     void ChangeSkyBox(Define.TimeOfDayType skyBox)
     {
+        Debug.Log("스카이박스 변경");
         string skyBoxName = GetSkyBoxKey(skyBox);
         _currentSkyBox = _skyBoxList[skyBoxName];
         _currentType =  SetCurrentProperty(skyBoxName);
