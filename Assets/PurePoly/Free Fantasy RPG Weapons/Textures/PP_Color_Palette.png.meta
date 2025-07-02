@@ -1,17 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/DoubleL/Model/Grid_01_BaseMap.png.meta
-guid: aabc9b201e428084cbafce795c5ba85e
-TextureImporter:
-  internalIDToNameTable: []
-  externalObjects: {}
-  serializedVersion: 13
-========
 guid: d0869fd078b9df545942d7d273dabb8a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
->>>>>>>> Develop:Assets/PurePoly/Free Fantasy RPG Weapons/Textures/PP_Color_Palette.png.meta
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
@@ -73,22 +65,6 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-<<<<<<<< HEAD:Assets/DoubleL/Model/Grid_01_BaseMap.png.meta
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-========
->>>>>>>> Develop:Assets/PurePoly/Free Fantasy RPG Weapons/Textures/PP_Color_Palette.png.meta
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -120,16 +96,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-<<<<<<<< HEAD:Assets/DoubleL/Model/Grid_01_BaseMap.png.meta
-  productId: 288783
-  packageName: RPG_Animations_Pack_FREE
-  packageVersion: 1.2
-  assetPath: Assets/DoubleL/Model/Grid_01_BaseMap.png
-  uploadId: 758198
-========
   productId: 248405
   packageName: Free Low Poly Fantasy RPG Weapons
   packageVersion: 1.0
   assetPath: Assets/PurePoly/Free Fantasy RPG Weapons/Textures/PP_Color_Palette.png
   uploadId: 567466
->>>>>>>> Develop:Assets/PurePoly/Free Fantasy RPG Weapons/Textures/PP_Color_Palette.png.meta

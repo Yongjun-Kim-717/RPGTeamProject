@@ -140,7 +140,7 @@ public class SkillSystem : MonoBehaviour
                     SkillManager.Instance.SubscribeEvents(slot, idx);
                     slot.OnActivateSkill += StartSkillInterval;
                 }
-                if (slot.SetSkill(data))
+                if(slot.SetSkill(data))
                 {
                     _skillSlotCount++;
                 }

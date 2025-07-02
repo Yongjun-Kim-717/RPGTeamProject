@@ -12,8 +12,6 @@ public class PopupUI_StageInfo : MonoBehaviour
     private Image[] _statusImages;
     private Image _currentStatusImage;
 
-    StageController _stageController;
-
     private void Awake()
     {
         Initialize();
@@ -21,12 +19,10 @@ public class PopupUI_StageInfo : MonoBehaviour
 
     private void Initialize()
     {
-        _stageController = FieldManager.Instance.StageController;
-
         _actionButton.onClick.AddListener(PerformDungeonAction);
         FieldManager.Instance.DungeonController.OnNormalMonsterDead += SetMonsterCountBar;
         FieldManager.Instance.DungeonController.OnDungeonExit += SetMonsterCountBarClear;
-        _stageController.OnStageActionChanged += SetStatusImage;
+        StageManager.Instance.OnStageActionChanged += SetStatusImage;
         _statusImages = _actionButton.GetComponentsInChildren<Image>();
         _currentStatusImage = null;
         _statusImages[1].gameObject.SetActive(false);
@@ -51,23 +47,23 @@ public class PopupUI_StageInfo : MonoBehaviour
     //- 클릭 전 버튼 상태에 따라 클릭 시 효과가 달라야 함 
     private void PerformDungeonAction()
     {
-        switch (_stageController.StageActionStatus)
+        switch (StageManager.Instance.StageActionStatus)
         {
             case Define.StageActionStatus.Challenge:
-                _stageController.StageActionStatus = Define.StageActionStatus.ExitStage;
-                _stageController.IsSpawnNamedMonster = true;
+                StageManager.Instance.StageActionStatus = Define.StageActionStatus.ExitStage;
+                StageManager.Instance.IsSpawnNamedMonster = true;
                 break;
             case Define.StageActionStatus.AutoChallenge:
-                _stageController.StageActionStatus = Define.StageActionStatus.NotChallenge;
+                StageManager.Instance.StageActionStatus = Define.StageActionStatus.NotChallenge;
                 break;
             case Define.StageActionStatus.NotChallenge:
-                _stageController.StageActionStatus = Define.StageActionStatus.AutoChallenge;
+                StageManager.Instance.StageActionStatus = Define.StageActionStatus.AutoChallenge;
                 break;
             case Define.StageActionStatus.GoFinalStage:
-                _stageController.StageActionStatus = Define.StageActionStatus.NotChallenge;
+                StageManager.Instance.StageActionStatus = Define.StageActionStatus.NotChallenge;
                 break;
             case Define.StageActionStatus.ExitStage:
-                _stageController.StageActionStatus = Define.StageActionStatus.NotChallenge;
+                StageManager.Instance.StageActionStatus = Define.StageActionStatus.NotChallenge;
                 // 탈출 이벤트 연결
                 break;
             default:

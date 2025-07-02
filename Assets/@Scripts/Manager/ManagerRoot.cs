@@ -39,9 +39,11 @@ public class ManagerRoot : MonoBehaviour
         PopupUIManager.Instance.CreateManager();
 
 
-        TextManager.Instance.CreateManager();
+        DamageTextManager.Instance.CreateManager();
 
         SkillManager.Instance.CreateManager();
+
+        StageManager.Instance.CreateManager();
 
         CutSceneManager.Instance.CreateManager();
 
@@ -57,7 +59,8 @@ public class ManagerRoot : MonoBehaviour
     {
         FieldManager.Instance.Subscribe();
         PopupUIManager.Instance.Subscribe();
-        TextManager.Instance.Subscribe();
+        DamageTextManager.Instance.Subscribe();
+        StageManager.Instance.Subscribe();
         CutSceneManager.Instance.Subscribe();
         TimeManager.Instance.Subscribe();
         EnvironmentManager.Instance.Subscribe();
@@ -67,7 +70,7 @@ public class ManagerRoot : MonoBehaviour
     private void DeactivateObjectsAll()
     {
         PopupUIManager.Instance.Deactivate();
-        TextManager.Instance.Deactivate();
+        DamageTextManager.Instance.Deactivate();
         CutSceneManager.Instance.Deactivate();
     }
     
