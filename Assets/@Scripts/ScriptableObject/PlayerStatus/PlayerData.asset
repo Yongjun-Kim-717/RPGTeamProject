@@ -21,23 +21,23 @@ MonoBehaviour:
   HP: 215
   HPRecoveryPerSec: 1
   CoolTimeDecrease: 0
-  UnlockedSkillSlotCount: 4
-  JourneyExp: 210
+  UnlockedSkillSlotCount: 6
+  JourneyExp: 20
   Speed: 10
-  JourneyRankData: {fileID: 11400000, guid: a2afe621b4a54e5429ba1220e758fdb6, type: 2}
+  JourneyRankData: {fileID: 11400000, guid: 27f836007a7cd0f4da75f48fea9ce306, type: 2}
   CurrentSkillData:
   - {fileID: 11400000, guid: fd5198dc4616eb641b608a206e87ff74, type: 2}
-  - {fileID: 11400000, guid: bbdb4ebe0c6ec554b9906d4e9c4fccd2, type: 2}
-  - {fileID: 11400000, guid: e7cdc63430a71744181505f386a877fe, type: 2}
-  - {fileID: 11400000, guid: d3f83f20550104043a5b4a2e6081daab, type: 2}
-  - {fileID: 11400000, guid: 5606e010ca7b71447adfd98bba35fd09, type: 2}
-  - {fileID: 11400000, guid: a813ec37f6ba9874fb28e91f4e83b765, type: 2}
-  - {fileID: 11400000, guid: d2dfe8b370999ea45a594a7460992a8c, type: 2}
-  - {fileID: 11400000, guid: cd6f05a47fa06614f8ceba3cedf03a2a, type: 2}
   - {fileID: 11400000, guid: a216770b25d62b7408ec2475f44984b1, type: 2}
   - {fileID: 11400000, guid: 8d17acd05d4825f49b29f04aa6209000, type: 2}
   - {fileID: 11400000, guid: 6db7772655d34b249974889693363309, type: 2}
+  - {fileID: 11400000, guid: bbdb4ebe0c6ec554b9906d4e9c4fccd2, type: 2}
+  - {fileID: 11400000, guid: e7cdc63430a71744181505f386a877fe, type: 2}
+  - {fileID: 11400000, guid: d3f83f20550104043a5b4a2e6081daab, type: 2}
+  - {fileID: 11400000, guid: d2dfe8b370999ea45a594a7460992a8c, type: 2}
+  - {fileID: 11400000, guid: cd6f05a47fa06614f8ceba3cedf03a2a, type: 2}
+  - {fileID: 11400000, guid: 5606e010ca7b71447adfd98bba35fd09, type: 2}
   - {fileID: 11400000, guid: 55c97e2a8261ca34d854a435370e093b, type: 2}
+  - {fileID: 11400000, guid: a813ec37f6ba9874fb28e91f4e83b765, type: 2}
   - {fileID: 11400000, guid: 028493dd784ee204d86cd9ad1e5e4f58, type: 2}
   - {fileID: 11400000, guid: 016cb91a6b1ad0341835e9f2bc494fc1, type: 2}
   - {fileID: 11400000, guid: 016cb91a6b1ad0341835e9f2bc494fc1, type: 2}

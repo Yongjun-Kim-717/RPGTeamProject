@@ -10,7 +10,6 @@ public class UI_Game : MonoBehaviour
     [SerializeField] TMP_Text _playerLevelText;
     [SerializeField] Button _statusButton;
     [SerializeField] Button _inventoryButton;
-    [SerializeField] Button _skillInventoryButton;
     [SerializeField] Button _gainedGoodsButton;
     [SerializeField] TMP_Text _silverCoinText;
     [SerializeField] TMP_Text _gemText;
@@ -43,7 +42,6 @@ public class UI_Game : MonoBehaviour
 
         _statusButton.onClick.AddListener(OnStatusButtonClick);
         _inventoryButton.onClick.AddListener(OnInventoryButtonClick);
-        _skillInventoryButton.onClick.AddListener(OnSkillInventoryButtonClick);
         _gainedGoodsButton.onClick.AddListener(OnGainedGoodsButtonClick);
         _silverCoinText.text = _inventoryData.silverCoin.ToString();
         _autoToggle.onValueChanged.AddListener(OnAutoToggleClick);
@@ -144,11 +142,6 @@ public class UI_Game : MonoBehaviour
     void OnInventoryButtonClick()
     {
         PopupUIManager.Instance.ActivateInventoryPanel();
-    }
-
-    void OnSkillInventoryButtonClick()
-    {
-        PopupUIManager.Instance.ActivateSkillInventoryPanel();
     }
 
     void OnGainedGoodsButtonClick()

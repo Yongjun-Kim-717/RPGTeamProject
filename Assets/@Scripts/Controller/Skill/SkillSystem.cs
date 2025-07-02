@@ -14,13 +14,9 @@ public class SkillSystem : MonoBehaviour
     int _skillSlotCount = 0;
     // 스킬 슬롯 리스트 - 액티브형 스킬 보관 슬롯
     List<SkillSlot> _activeSkillSlotList = new List<SkillSlot>();
-    // 궁극기 스킬 보관 슬롯
-    SkillSlot _ultimateSkillSlot;
-    // 기본 공격 보관 슬롯
     BasicSkillSlot _basicSkillSlot;
 
     PlayerController _player;
-    Animator _animator;
 
     public Action<float> OnShortestSkillDistanceChanged;
 
@@ -36,7 +32,6 @@ public class SkillSystem : MonoBehaviour
     public void InitializeSkillSystem()
     {
         _player = PlayerManager.Instance.Player;
-        _animator = _player.GetComponent<Animator>();
         OnShortestSkillDistanceChanged += _player.SetShortestSkillDistance;
 
         // 오브젝트매니저가 보유 중인 스킬 프리팹들을 플레이어의 스킬리스트에 넣기
@@ -59,14 +54,11 @@ public class SkillSystem : MonoBehaviour
             }
             else
             {
-                if (!_animator.GetBool(Define.IsAttacking))
+                foreach (var slot in _activeSkillSlotList)
                 {
-                    foreach (var slot in _activeSkillSlotList)
+                    if (!SkillManager.Instance.IsSkillInterval && slot != null)
                     {
-                        if (!SkillManager.Instance.IsSkillInterval && slot != null)
-                        {
-                            slot.ActivateSlotSkill();
-                        }
+                        slot.ActivateSlotSkill();
                     }
                 }
             }
@@ -91,34 +83,6 @@ public class SkillSystem : MonoBehaviour
 
     public void AddSkill(SkillData data)
     {
-        if (data == null)
-        {
-            Debug.Log("No Skill Data!!!");
-            return;
-        }
-        // 궁극기인지 확인 후 궁극기이면
-        // 궁극기 칸이 비어있거나, 쿨타임 진행 중이지 않으면 교체
-        // 궁극기 칸이 이미 차있고, 쿨타임 진행 중이면 쿨타임 중엔 교체 불가 표시
-        if (data.IsUltimate)
-        {
-            if (_ultimateSkillSlot != null)
-            {
-                Debug.Log("You already have ultimate skill!!!");
-                return;
-            }
-
-            GameObject go = new GameObject(data.name + " slot");
-            go.transform.SetParent(transform);
-            go.transform.localPosition = Vector3.up;
-            SkillSlot slot = go.AddComponent<SkillSlot>();
-            SkillManager.Instance.SubscribeEvents(slot, -1);
-            // 궁극기는 굳이 스킬 인터벌 줄 이유가?
-            slot.OnActivateSkill += StartSkillInterval;
-            slot.SetSkill(data);
-            _ultimateSkillSlot = slot;
-            return;
-        }
-
         // 이미 스킬 아이콘 슬롯에 보유 중인 스킬인지 검사
         SkillSlot skillSlot = _activeSkillSlotList.Find((slot) => slot.SkillData == data);
         if (skillSlot != null)
@@ -187,32 +151,14 @@ public class SkillSystem : MonoBehaviour
 
     public void RemoveSkill(SkillData data)
     {
-        if (data == null)
+        SkillSlot slot = _activeSkillSlotList.Find((slot) => slot.SkillData == data);
+        if (slot == null)
         {
-            Debug.Log("No Skill Data!!!");
+            Debug.Log("Cannot Find Skill with Name " + data.SkillName);
             return;
         }
-        if (data.IsUltimate)
-        {
-            if (_ultimateSkillSlot == null || _ultimateSkillSlot.SkillData != data)
-            {
-                Debug.Log($"Your ultimate skill is not {data.SkillName}");
-                return;
-            }
-            _ultimateSkillSlot.DestroySkillSlot();
-        }
-        else
-        {
-            SkillSlot slot = _activeSkillSlotList.Find((slot) => slot.SkillData == data);
-            if (slot == null)
-            {
-                Debug.Log("Cannot Find Skill with Name " + data.SkillName);
-                return;
-            }
-            slot.DestroySkillSlot();
-            _skillSlotCount--;
-        }
-
+        slot.DestroySkillSlot();
+        _skillSlotCount--;
     }
 
     public float GetShortestSkillDistance()

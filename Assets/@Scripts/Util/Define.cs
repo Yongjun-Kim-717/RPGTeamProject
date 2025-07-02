@@ -56,7 +56,7 @@ public class Define : MonoBehaviour
     public const string PopupPanelPath = "UI/PopupUI/Panel - Popup";
     public const string PopupStatusPanelPath = "UI/PopupUI/StatusPanel - Popup";
     public const string PopupInventoryPanelPath = "UI/PopupUI/InventoryPanel - Popup";
-    public const string PopupSkillInventoryPath = "UI/PopupUI/SkillInventoryPanel - Popup";
+    public const string PopupSkillInventoryPath = "UI/PopupUI/UI_SkillInventory - Popup";
     public const string PopupGainedRecordPanelPath = "UI/PopupUI/GainedRecordPanel - Popup";
     public const string PopupJourneyInfoPanelPath = "UI/PopupUI/Panel - JourneyInfo";
     public const string PopupStageInfoPanelPath = "UI/PopupUI/Panel - StageInfo";
@@ -220,6 +220,5 @@ public class Define : MonoBehaviour
     #region Constants
     public const float MaxDef = 100f;
     public const float SkillInterval = 0.5f;
-    public const int TotalSkillIconSlotNum = 6;
     #endregion
 }

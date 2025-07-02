@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: -197024764294010517}
   m_Layer: 0
   m_Name: TreasureBox
-  m_TagString: FieldObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
