@@ -16,6 +16,7 @@ public class Define : MonoBehaviour
     public readonly static int IsInteractionPossible = Animator.StringToHash("IsInteractionPossible");
 
     public readonly static int Contact = Animator.StringToHash("Contact");
+    public readonly static int Open = Animator.StringToHash("Open");
 
     public const string EndAttack = "EndAttack";
     public const string WalkSpeed = "WalkSpeed";
