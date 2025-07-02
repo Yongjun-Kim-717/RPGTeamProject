@@ -175,7 +175,7 @@ public class DungeonController : MonoBehaviour
         DeathMonsterCount = 0;
         SetWallDown();
         //PopupUIManager에서 stageInfo 활성화, adventureInfo 비활성화
-        OnDungeonEnter?.Invoke();
+        OnDungeonEnter?.Invoke(); 
     }
 
     // * 네임드 몬스터 사망 액션 구독 메서드
@@ -191,8 +191,6 @@ public class DungeonController : MonoBehaviour
         //PopupUIManager에서 stageInfo 비활성화, adventureInfo 활성화
         OnDungeonExit?.Invoke();
         SetWallDown();
-
-        // 던전 입장은 수동으로
         //if(PlayerManager.Instance.IsAuto)
         //{
         //    CreateDungeon();

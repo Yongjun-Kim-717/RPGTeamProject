@@ -15,8 +15,8 @@ MonoBehaviour:
   SkillName: "\uC885\uB9D0\uC758\uB0A0"
   SkillDescription: "(\uAD81\uADF9\uAE30) \uBA54\uD14C\uC624\uAC00 \uB5A8\uC5B4\uC838
     \uAD11\uBC94\uC704 \uC801\uC5D0\uAC8C \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
-  SkillIcon: {fileID: 21300000, guid: 3fc893e7307b03e468124a8cb27bc1dc, type: 3}
-  CoolTime: 20
+  SkillIcon: {fileID: 21300000, guid: 734b019d61b6dc94990f3cba84a7d470, type: 3}
+  CoolTime: 5
   DurationTime: 3
   TargetDistance: 20
   Damage: 40

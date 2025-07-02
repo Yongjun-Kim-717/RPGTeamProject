@@ -66,6 +66,6 @@ public class FieldManager : Singleton<FieldManager>, IEventSubscriber, IDeactiva
 
     public void Deactivate()
     {
-
+        
     }
 }

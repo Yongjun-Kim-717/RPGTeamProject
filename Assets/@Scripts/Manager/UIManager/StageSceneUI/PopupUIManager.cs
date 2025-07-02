@@ -24,11 +24,6 @@ public class PopupUIManager : Singleton<PopupUIManager>, IEventSubscriber, IDeac
         get { return _panelGainedRecord; }
     }
 
-    public GameObject PanelSkillInventory
-    {
-        get { return _panelSkillInventory; }
-    }
-
     #region Initialize
     protected override void Initialize()
     {

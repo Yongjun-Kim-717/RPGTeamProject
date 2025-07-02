@@ -15,13 +15,14 @@ MonoBehaviour:
   SkillName: "\uC9C8\uD48D\uCC38"
   SkillDescription: "\uC804\uBC29\uC73C\uB85C \uBE60\uB974\uAC8C \uB3CC\uC9C4\uD558\uBA70
     \uC801\uC5D0\uAC8C \uB370\uBBF8\uC9C0\uB97C \uC90D\uB2C8\uB2E4."
-  SkillIcon: {fileID: 21300000, guid: f491e8203e83350438ed12d92702b7ca, type: 3}
+  SkillIcon: {fileID: 21300000, guid: db54fb2c544d94546bb013a1b2072749, type: 3}
   CoolTime: 3
   DurationTime: 0.5
   TargetDistance: 7
   Damage: 10
   Speed: 100
   Angle: 0
+  MP: 10
   ConnectedSkillPrefab: {fileID: 0}
   HitEffectPrefab: {fileID: 6823302871133167919, guid: cd974dacb07f86b4ebe991d1822d05ea, type: 3}
   TargetExistence: 1
@@ -30,5 +31,3 @@ MonoBehaviour:
   Offset: {x: 0, y: 0, z: 0}
   BuffStatus: 8
   BuffAmount: 0
-  IsUltimate: 0
-  SkillAnimationName: 

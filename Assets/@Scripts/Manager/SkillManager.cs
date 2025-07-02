@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class SkillManager : Singleton<SkillManager>
 {
     SkillIconSlot[] _skillIconSlots;
-    UltimateSkillIconSlot _ultimateSkillIconSlot;
 
     bool _isSkillInterval;
 
@@ -28,24 +27,10 @@ public class SkillManager : Singleton<SkillManager>
 
     public SkillIconSlot[] IconSlots { get { return _skillIconSlots; } }
 
-    public UltimateSkillIconSlot UltimateIconSlot { get { return _ultimateSkillIconSlot; } }
-
-    public Sprite[] CurrentSkillIcons()
-    {
-        Sprite[] sprites = new Sprite[6];
-        sprites[0] = _ultimateSkillIconSlot.SkillIconSprite;
-        for (int i = 1; i < sprites.Length; i++)
-        {
-            sprites[i] = _skillIconSlots[i - 1].SkillIconSprite;
-        }
-        return sprites;
-    }
-
     // Panel - SkillIconSlot에 생성된 슬롯들 가져오기
-    public void SetIconSlots(SkillIconSlot[] slots, UltimateSkillIconSlot ultimate)
+    public void SetIconSlots(SkillIconSlot[] slots)
     {
         _skillIconSlots = slots;
-        _ultimateSkillIconSlot = ultimate;
     }
 
     public void LockIconSlots(int idx)
@@ -58,34 +43,17 @@ public class SkillManager : Singleton<SkillManager>
 
     public void SubscribeEvents(SkillSlot skillSlot, int idx)
     {
-        if (idx < 0)
-        {
-            skillSlot.OnGenerateSlot += _ultimateSkillIconSlot.SetIconSlot;
-            skillSlot.OnActivateSkill += _ultimateSkillIconSlot.StartIconCoolTime;
-            skillSlot.OnRemoveSkill += _ultimateSkillIconSlot.ReleaseIconSlot;
+        skillSlot.OnGenerateSlot += _skillIconSlots[idx].SetIconSlot;
+        skillSlot.OnActivateSkill += _skillIconSlots[idx].StartIconCoolTime;
+        skillSlot.OnRemoveSkill += _skillIconSlots[idx].ReleaseIconSlot;
 
-            _ultimateSkillIconSlot.OnClickSkillIcon = () =>
-            {
-                if (!IsSkillInterval)
-                {
-                    skillSlot.ActivateSlotSkill();
-                }
-            };
-        }
-        else
+        _skillIconSlots[idx].OnClickSkillIcon = () =>
         {
-            skillSlot.OnGenerateSlot += _skillIconSlots[idx].SetIconSlot;
-            skillSlot.OnActivateSkill += _skillIconSlots[idx].StartIconCoolTime;
-            skillSlot.OnRemoveSkill += _skillIconSlots[idx].ReleaseIconSlot;
-
-            _skillIconSlots[idx].OnClickSkillIcon = () =>
+            if (!IsSkillInterval)
             {
-                if (!IsSkillInterval)
-                {
-                    skillSlot.ActivateSlotSkill();
-                }
-            };
-        }
+                skillSlot.ActivateSlotSkill();
+            }
+        };
     }
 
     public void OnOffSkillIntervalImage(bool flag)
@@ -94,6 +62,5 @@ public class SkillManager : Singleton<SkillManager>
         {
             skillSlot.OnOffSkillIntervalImage(flag);
         }
-        _ultimateSkillIconSlot.OnOffSkillIntervalImage(flag);
     }
 }

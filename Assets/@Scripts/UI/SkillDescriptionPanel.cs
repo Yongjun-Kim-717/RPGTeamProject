@@ -10,6 +10,7 @@ public class SkillDescriptionPanel : MonoBehaviour
     [SerializeField] Image _skillIcon;
     [SerializeField] Button _equipButton;
     [SerializeField] Button _releaseButton;
+    [SerializeField] Button _exitButton;
     SkillData _skillData;
 
     public Action<SkillData> OnEquipSkill;
@@ -19,6 +20,7 @@ public class SkillDescriptionPanel : MonoBehaviour
     {
         _equipButton.onClick.AddListener(OnEquipButtonClick);
         _releaseButton.onClick.AddListener(OnReleaseButtonClick);
+        _exitButton.onClick.AddListener(OnExitButtonClick);
         gameObject.SetActive(false);
     }
 
@@ -59,5 +61,10 @@ public class SkillDescriptionPanel : MonoBehaviour
         // 현재 스킬 슬롯에 있는 스킬이면 해제
         // 현재 스킬 슬롯에 없는 스킬이면 경고문?
         OnReleaseSkill?.Invoke(_skillData);
+    }
+
+    void OnExitButtonClick()
+    {
+        gameObject.SetActive(false);
     }
 }
