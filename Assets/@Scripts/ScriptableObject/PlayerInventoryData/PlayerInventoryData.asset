@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   silverCoin: 9985
+  Gem: 0
   exp: 0
   enhancementStone: 500
+  Items: []

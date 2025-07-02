@@ -324,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 7355998668043894292}
   _skillCoolTimeImage: {fileID: 204613588290726673}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &1385534358868323321
 MonoBehaviour:
@@ -431,6 +432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 2935300639110524812}
   _skillCoolTimeImage: {fileID: 6900416576615286325}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &384200729405447221
 MonoBehaviour:
@@ -538,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 776096679981812601}
   _skillCoolTimeImage: {fileID: 953887861611967085}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &1531655745804234868
 MonoBehaviour:
@@ -795,6 +798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 394824658029901659}
   _skillCoolTimeImage: {fileID: 2744971555536123170}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &1874811086358987499
 MonoBehaviour:
@@ -1352,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 3007743495204917272}
   _skillCoolTimeImage: {fileID: 237516178654896417}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &975603389049654319
 MonoBehaviour:
@@ -1534,6 +1539,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillIconImage: {fileID: 3081484566826759499}
   _skillCoolTimeImage: {fileID: 322546558606604211}
+  _skillIntervalTimeImage: {fileID: 0}
   _lockImage: {fileID: 21300000, guid: 9b45df6f5d7b4514096000c44b6b4703, type: 3}
 --- !u!114 &6997014129062522861
 MonoBehaviour:

@@ -37,10 +37,6 @@ public class PoolManager : Singleton<PoolManager>
                     return _poolList[name][i];
                 }
             }
-            // 존재하지 않을 때 일반 몬스터인지 검사 후 일반 몬스터는 개체 수 제한
-            //if (_poolList[Name][0].GetComponent<NormalMonsterController>() != null && _poolList[Name].Count >= _limitOfNormalMonsterCount)
-            //    return null;
-            
             // 오브젝트 매니저의 Spawn 메서드로 동적 생성 및 풀 리스트 등록
             GameObject obj = ObjectManager.Instance.GetObject<T>(spawnPos, name, parent);
             obj.transform.SetParent(_parentObjectList[name].transform, false);

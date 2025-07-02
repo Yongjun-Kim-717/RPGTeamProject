@@ -8,7 +8,6 @@ using extension;
 public class TimeManager : Singleton<TimeManager>, IEventSubscriber
 {
     public event Action<float> OnNamedMonsterTimeChanged;
-    public event Action OnGainedRecordTimeChanged;
     public event Action<Define.TimeOfDayType> OnColorChanged;
     public event Action<Define.TimeOfDayType> OnTimeSpeedChanged;
 
@@ -62,7 +61,6 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
 
     private void OnEnable()
     {
-        StartGainedRecord();
         StartDay();
     }
 
@@ -92,22 +90,6 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
         }
     }
     #endregion
-
-    #region GainRecord Timer
-    public void StartGainedRecord()
-    {
-        StartCoroutine(GainedRecordTimer());
-    }
-    IEnumerator GainedRecordTimer()
-    {
-        while (_isPlaying)
-        {
-            yield return _standardTime;
-            OnGainedRecordTimeChanged?.Invoke();
-        }
-    }
-    #endregion
-
 
     #region DayTimer
     public void StartDay()

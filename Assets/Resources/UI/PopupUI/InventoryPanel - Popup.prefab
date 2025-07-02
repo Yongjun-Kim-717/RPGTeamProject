@@ -541,7 +541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 560, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8954833520343082562
@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 560, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7541419943566229738
@@ -1701,11 +1701,11 @@ RectTransform:
   - {fileID: 1209804004577977261}
   m_Father: {fileID: 1236096881840445443}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 600, y: 620}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8376025237378886022
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2832,7 +2832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -40}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 560, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2436986227091587169
@@ -4253,10 +4253,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad39b554605113942ac0a30599055cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _slot: {fileID: 0}
   _equipmentViewPort: {fileID: 1917765073563245905}
   _consumeViewPort: {fileID: 6240144820017343118}
   _otherViewPort: {fileID: 1057438614829318238}
+  _equipmentItemButton: {fileID: 410240698991146593}
+  _consumeItemButton: {fileID: 9030098202055923492}
+  _otherItemButton: {fileID: 5019596277353503007}
   _exitButton: {fileID: 4826602352031025268}
 --- !u!114 &4274310700215690649
 MonoBehaviour:

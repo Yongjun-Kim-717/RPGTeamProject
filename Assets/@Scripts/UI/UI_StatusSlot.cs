@@ -82,22 +82,22 @@ public class UI_StatusSlot : MonoBehaviour
     //근데 업글 비용과 스탯 수?를 정해야 한다
     public void UpgradeStatus()
     {
-        if (_inventoryData.ModifyGoods(Define.GoodsType.SilverCoin, -_statusSlotData.upgradeCost))
-        {
-            _statusSlotData.level++;
-            _statusSlotData.upgradeCost += 10 * _statusSlotData.level;
-            _statusSlotData.currentStatusCount += 5 + _statusSlotData.level;
+        //if (_inventoryData.ModifyGoods(Define.GoodsType.SilverCoin, -_statusSlotData.upgradeCost))
+        //{
+        //    _statusSlotData.level++;
+        //    _statusSlotData.upgradeCost += 10 * _statusSlotData.level;
+        //    _statusSlotData.currentStatusCount += 5 + _statusSlotData.level;
 
-            _upgradeCostText.text = _statusSlotData.upgradeCost.ToString();
-            _currentStatusText.text = _statusSlotData.currentStatusCount.ToString();
+        //    _upgradeCostText.text = _statusSlotData.upgradeCost.ToString();
+        //    _currentStatusText.text = _statusSlotData.currentStatusCount.ToString();
 
-            ApplyUpgrade(_statusSlotData.statusType, _statusSlotData.currentStatusCount);
-            _isSilverCoinLack = false;
-        }
-        else
-        {
-            _isSilverCoinLack = true;
-        }
+        //    ApplyUpgrade(_statusSlotData.statusType, _statusSlotData.currentStatusCount);
+        //    _isSilverCoinLack = false;
+        //}
+        //else
+        //{
+        //    _isSilverCoinLack = true;
+        //}
     }
 
     void ApplyUpgrade(Define.StatusType type, int amount)
