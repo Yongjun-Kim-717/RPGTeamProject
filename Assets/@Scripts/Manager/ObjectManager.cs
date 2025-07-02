@@ -21,7 +21,6 @@ public class ObjectManager : Singleton<ObjectManager>
     private Dictionary<string, Material> _skyBoxResourceList;
     private Dictionary<string, JourneyRankData> _journeyRankResourceList;
     private Dictionary<string, GameObject> _fieldObjectSpawnSpotList;
-    private Dictionary<string, GameObject> _itemSlotList;
     private Dictionary<string, GameObject> _fieldObjectList;
 
     // * GameObject : 인게임 오브젝트
@@ -124,6 +123,7 @@ public class ObjectManager : Singleton<ObjectManager>
             return _damageTextResourceList;
         }
     }
+
     public Dictionary<string, Material> SkyBoxResourceList
     {
         get
@@ -133,6 +133,7 @@ public class ObjectManager : Singleton<ObjectManager>
             return _skyBoxResourceList;
         }
     }
+
     public Dictionary<string, JourneyRankData> JourneyRankResourceList
     {
         get 
@@ -142,6 +143,7 @@ public class ObjectManager : Singleton<ObjectManager>
             return _journeyRankResourceList;
         }
     }
+
     public Dictionary<string, GameObject> FieldObjectSpawnSpotList
     {
         get
@@ -151,16 +153,6 @@ public class ObjectManager : Singleton<ObjectManager>
             return _fieldObjectSpawnSpotList;
         }
     }
-    public Dictionary<string, GameObject> ItemSlotList
-    {
-        get
-        {
-            if (NullCheck(_itemSlotList))
-                return null;
-            return _itemSlotList;
-        }
-    }
-
 
     public Dictionary<string, GameObject> FieldObjectList
     {
@@ -431,7 +423,6 @@ public class ObjectManager : Singleton<ObjectManager>
         _skyBoxResourceList = new Dictionary<string, Material>();
         _journeyRankResourceList = new Dictionary<string, JourneyRankData>();
         _fieldObjectSpawnSpotList = new Dictionary<string, GameObject>();
-        _itemSlotList = new Dictionary<string, GameObject>();
         _fieldObjectList = new Dictionary<string, GameObject>();
     }
     #endregion
@@ -456,7 +447,6 @@ public class ObjectManager : Singleton<ObjectManager>
         PlayerVitalResourceLoad();
         CutSceneResourceLoad();
         CameraResourceLoad();
-        ItemSlotResourceLoad();
     }
 
     // * 플레이어 리소스 로드 메서드
@@ -569,14 +559,6 @@ public class ObjectManager : Singleton<ObjectManager>
         }
     }
 
-    private void ItemSlotResourceLoad()
-    {
-        if(!NullCheck(_itemSlotList))
-        {
-            Resources.LoadAll<GameObject>(Define.ItemSlotPath).ToList(_itemSlotList);
-        }
-    }
-
     private void EnvironmentResourceLoad()
     {
         _backgroundResource = Resources.Load<GameObject>(Define.BackgroundPath);
@@ -596,6 +578,7 @@ public class ObjectManager : Singleton<ObjectManager>
         _popupCanvas = Resources.Load<GameObject>(Define.PopupUICanvasPath);
         _popupPanel = Resources.Load<GameObject>(Define.PopupPanelPath);
         _popupJourneyInfo = Resources.Load<GameObject>(Define.PopupJourneyInfoPanelPath);
+        _popupGainedRecordInfo = Resources.Load<GameObject>(Define.PopupGainedRecordPanelPath);
         _popupStageInfo = Resources.Load<GameObject>(Define.PopupStageInfoPanelPath);
         _popupNamedMonsterInfo = Resources.Load<GameObject>(Define.PopupNamedMonsterInfoPanelPath);
         _popupStatusPanel = Resources.Load<GameObject>(Define.PopupStatusPanelPath);
@@ -663,11 +646,6 @@ public class ObjectManager : Singleton<ObjectManager>
         else if(type == typeof(SystemTextController))
         {
             GameObject obj = Instantiate(SystemTextResource, spawnPos, Quaternion.identity);
-            return obj;
-        }
-        else if(type == typeof(ItemSlot))
-        {
-            GameObject obj = Instantiate(ItemSlotList[name], parent);
             return obj;
         }
         else if(type == typeof(RewardTextController))
