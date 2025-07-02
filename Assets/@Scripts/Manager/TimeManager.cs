@@ -121,7 +121,7 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
         {
             yield return _standardTime;
             _dayTime += 1;
-            //Debug.Log(_dayTime);
+            Debug.Log(_dayTime);
             
             if (_colorChangeTransitions.TryGetValue(_dayTime, out var newColorTimeOfDay))
             {

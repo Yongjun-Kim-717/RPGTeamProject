@@ -4,10 +4,8 @@ using UnityEngine.EventSystems;
 
 public class UI_SkillIconSlotPanel : MonoBehaviour
 {
-    [SerializeField] GameObject _skillIconSlotPrefab;
-    [SerializeField] GameObject _ultimateSkillIconSlotPrefab;
-    SkillIconSlot[] _skillIconSlots = new SkillIconSlot[5];
-    UltimateSkillIconSlot _ultimateSkillIconSlot;
+    [SerializeField] GameObject _skillIconSlot;
+    SkillIconSlot[] _iconSlots = new SkillIconSlot[6];
     const int _numOfColumn = 3;
     readonly Vector2 _start = new Vector2(-170, 70);
     readonly Vector2 _space = new Vector2(160, 150);
@@ -16,40 +14,24 @@ public class UI_SkillIconSlotPanel : MonoBehaviour
     private void Awake()
     {
         CreateSkillIconSlots();
-        SkillManager.Instance.SetIconSlots(_skillIconSlots, _ultimateSkillIconSlot);
+        SkillManager.Instance.SetIconSlots(_iconSlots);
         SkillManager.Instance.LockIconSlots(PlayerManager.Instance.Player.PlayerData.UnlockedSkillSlotCount);
         PlayerManager.Instance.SkillSystem.SetSkillSlotList();
     }
 
     void CreateSkillIconSlots()
     {
-        for (int i = 0; i < Define.TotalSkillIconSlotNum; i++)
+        for (int i = 0; i < _iconSlots.Length; i++)
         {
-            GameObject go;
-            if (i == 0)
-            {
-                go = Instantiate(_ultimateSkillIconSlotPrefab);
-                go.name = "UltimateSkillIconSlot";
-            }
-            else
-            {
-                go = Instantiate(_skillIconSlotPrefab);
-                go.name = $"SkillIconSlot " + (i - 1);
-            }
+            GameObject go = Instantiate(_skillIconSlot);
+            go.name = $"SkillIonSlot " + i;
             go.transform.SetParent(transform);
-
             RectTransform rect = go.GetComponent<RectTransform>();
             rect.anchoredPosition = CalculateSlotPosition(i);
             rect.sizeDelta = _size;
+            //Debug.Log($"{i}: {rect.localPosition}");
             AddEvent(go, EventTriggerType.PointerClick, (data) => { OnClick(go, (PointerEventData)data); });
-            if (i == 0)
-            {
-                _ultimateSkillIconSlot = go.GetComponent<UltimateSkillIconSlot>();
-            }
-            else
-            {
-                _skillIconSlots[i - 1] = go.GetComponent<SkillIconSlot>();
-            }
+            _iconSlots[i] = go.GetComponent<SkillIconSlot>();
         }
     }
 

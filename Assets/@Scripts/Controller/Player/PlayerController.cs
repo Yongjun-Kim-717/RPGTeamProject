@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     // 데이터는 getter만 되도록?
     public PlayerData PlayerData { get { return _playerData; } }
-    public Inventory Inventory { get { return _inventory; } }
+    public Inventory Inventory{ get { return _inventory; } }
     public PlayerStatus PlayerStatus { get { return _runtimeData; } }
 
     public float HP
@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     void Update()
     {
         Recover();
-        //SkillInventoryOnOff();
+        SkillInventoryOnOff();
     }
 
     private void FixedUpdate()
@@ -207,26 +207,7 @@ public class PlayerController : MonoBehaviour, IDamageable
         // 자동 모드일 때
         if (!_isSwifting && PlayerManager.Instance.IsAuto)
         {
-            if (PlayerManager.Instance.IsAutoMoving)
-            {
-                MoveAlongRoad();
-            }
-            else
-            {
-                SetTarget();
-                if (_target == null)
-                {
-                    MoveAlongRoad();
-                }
-                else
-                {
-                    if (!MoveToTarget(0.5f))
-                    {
-                        // 오브젝트 접촉 후엔 다시 제갈길 가는 거로
-                        PlayerManager.Instance.IsAutoMoving = true;
-                    }
-                }
-            }// 던전 클리어해서 포탈 향해 가는 상황 / target==portal or null 일 때
+            // 던전 클리어해서 포탈 향해 가는 상황 / target==portal or null 일 때
             if (PlayerManager.Instance.IsAutoMoving)
             {
                 if (_target == null)
@@ -262,6 +243,7 @@ public class PlayerController : MonoBehaviour, IDamageable
                 }
                 MoveToTarget(_shortestSkillDistance);
             }
+
         }
         // 수동 모드일 때
         else
@@ -285,7 +267,7 @@ public class PlayerController : MonoBehaviour, IDamageable
     // target과의 거리가 distance 이하가 될 때까지 움직임
     bool MoveToTarget(float distance)
     {
-        //타겟과 거리가 distance 이하로 되면 정지
+        //타겟과 거리가 가까워지면 정지
         Vector3 targetPos = _target.position;
         targetPos.y = 0;
         Vector3 playerPos = transform.position;
@@ -309,16 +291,12 @@ public class PlayerController : MonoBehaviour, IDamageable
                 _direction = _target.position - transform.position;
                 _direction.y = 0;
             }
-            // 공격 모션 중이지 않을 때 이동
-            if(!_animator.GetBool(Define.IsAttacking))
-            {
-                _rigidbody.MovePosition(_rigidbody.position + _direction.normalized * _playerData.Speed * Time.fixedDeltaTime);
 
-                _animator.SetFloat(Define.Speed, _direction.magnitude);
-                //타겟 바라보게 회전
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), _playerData.Speed * Time.deltaTime);
-            }
-            
+            _rigidbody.MovePosition(_rigidbody.position + _direction.normalized * _playerData.Speed * Time.fixedDeltaTime);
+
+            _animator.SetFloat(Define.Speed, _direction.magnitude);
+            //타겟 바라보게 회전
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), _playerData.Speed * Time.deltaTime);
             return true;
         }
     }
@@ -401,34 +379,28 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void SetTarget()
     {
-        // 1. 필드 오브젝트 찾기
-        _target = GameObject.FindGameObjectWithTag(Define.FieldObjectTag)?.transform;
-        // 2. 몬스터 찾기
-        if(_target == null)
+        _target = Util.GetNearestTarget(transform.position, _shortestSkillDistance)?.transform;
+        if (_target == null || !_target.gameObject.activeSelf)
         {
-            _target = Util.GetNearestTarget(transform.position, _shortestSkillDistance)?.transform;
-            if (_target == null || !_target.gameObject.activeSelf)
+            //쵸비상 몬스터 풀 어케 가져옴
+            //stage info에서 현재 스테이지의 몬스터 정보를 받아와서 이름으로 
+            _target = Util.GetNearestTarget(transform.position, 100f)?.transform;
+            if (_target == null)
             {
-                //쵸비상 몬스터 풀 어케 가져옴
-                //stage info에서 현재 스테이지의 몬스터 정보를 받아와서 이름으로 
-                _target = Util.GetNearestTarget(transform.position, 100f)?.transform;
-                if (_target == null)
-                {
-                    Debug.Log("No target on field!!!");
-                    PlayerManager.Instance.IsAutoMoving = true;
-                    _target = FindAnyObjectByType<DungeonPortalController>()?.transform;
-                }
+                Debug.Log("No target on field!!!");
+                PlayerManager.Instance.IsAutoMoving = true;
+                _target = FindAnyObjectByType<DungeonPortalController>()?.transform;
             }
-        }        
+        }
     }
 
-    //void SkillInventoryOnOff()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.K))
-    //    {
-    //        PopupUIManager.Instance.ActivateSkillInventoryPanel();
-    //    }
-    //}
+    void SkillInventoryOnOff()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            PopupUIManager.Instance.ActivateSkillInventoryPanel();
+        }
+    }
 
     public void SetAuto(bool flag)
     {

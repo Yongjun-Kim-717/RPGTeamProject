@@ -29,14 +29,14 @@ public class PlayerManager : Singleton<PlayerManager>
             {
                 _player.Target = null;
                 _isAutoMoving = false;
-                if(FieldManager.Instance.StageController.StageActionStatus == Define.StageActionStatus.AutoChallenge)
+                if(StageManager.Instance.StageActionStatus==Define.StageActionStatus.AutoChallenge)
                 {
-                    FieldManager.Instance.StageController.StageActionStatus = Define.StageActionStatus.NotChallenge;
+                    StageManager.Instance.StageActionStatus = Define.StageActionStatus.NotChallenge;
                 }
             }
             else
             {
-                if(FieldManager.Instance.StageController.StageActionStatus == Define.StageActionStatus.NotChallenge)
+                if(StageManager.Instance.StageActionStatus == Define.StageActionStatus.NotChallenge)
                 {
                     // 던전 생성 버튼이 활성화되어있는데 자동 모드 켜질때
                     if (!FieldManager.Instance.DungeonController.IsDungeonExist)
@@ -46,13 +46,13 @@ public class PlayerManager : Singleton<PlayerManager>
                     // 던전 진행 중이고, 아직 게이지 다 안 찬 NotChallenge상태에서 자동 켜질 때
                     else if (FieldManager.Instance.DungeonController.IsDungeonExist)
                     {
-                        FieldManager.Instance.StageController.StageActionStatus = Define.StageActionStatus.AutoChallenge;
+                        StageManager.Instance.StageActionStatus = Define.StageActionStatus.AutoChallenge;
                     }
                 }
-                else if (FieldManager.Instance.StageController.StageActionStatus == Define.StageActionStatus.Challenge)
+                else if (StageManager.Instance.StageActionStatus == Define.StageActionStatus.Challenge)
                 {
-                    //StageController.Instance.StageActionStatus = Define.StageActionStatus.ExitStage;
-                    FieldManager.Instance.StageController.IsSpawnNamedMonster = true;
+                    //StageManager.Instance.StageActionStatus = Define.StageActionStatus.ExitStage;
+                    StageManager.Instance.IsSpawnNamedMonster = true;
                 }
             }
             //Debug.Log("IsAuto: " + _isAuto);

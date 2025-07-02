@@ -44,8 +44,7 @@ public class PopupUI_JourneyInfo : MonoBehaviour
         _currentJourneyExp = _currentPlayerData.JourneyExp;
         _currentJourneyRank = _journeyRankData.Index;
 
-        _journeyGaugeBarImage.fillAmount 
-            = (_currentJourneyExp - _journeyRankData.MinJourneyExp) / (_journeyRankData.MaxJourneyExp - _journeyRankData.MinJourneyExp);
+        _journeyGaugeBarImage.fillAmount = (_currentJourneyExp - _journeyRankData.MinJourneyExp) / _journeyRankData.MaxJourneyExp;
         _journeyExpText.text = _currentJourneyExp.ToString(); //모험 게이지
         _journeyExpText.color = Color.white;
         UpdateJourneyUI();
