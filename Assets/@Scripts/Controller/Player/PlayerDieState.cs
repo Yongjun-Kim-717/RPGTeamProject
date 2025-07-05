@@ -6,6 +6,6 @@ public class PlayerDieState : StateMachineBehaviour
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         animator.SetBool(Define.IsDead, true);
-        PlayerManager.Instance.IsDead = true;
+        //PlayerManager.Instance.IsDead = true;
     }
 }

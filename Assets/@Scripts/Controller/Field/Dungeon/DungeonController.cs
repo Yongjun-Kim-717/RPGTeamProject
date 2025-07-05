@@ -188,17 +188,13 @@ public class DungeonController : MonoBehaviour
         SetClearPortalOn();
     }
 
+    // * 던전 나가거나, 던전 클리어 실패 시 실행되는 메서드
     private void ExitDungeon()
     {
         //PopupUIManager에서 stageInfo 비활성화, adventureInfo 활성화
+        //네임드 몬스터 비활성, 일반 몬스터 비활성
         OnDungeonExit?.Invoke();
         SetWallDown();
-
-        // 던전 입장은 수동으로
-        //if(PlayerManager.Instance.IsAuto)
-        //{
-        //    CreateDungeon();
-        //}
     }
 
     // * 던전 오브젝트 관리 메서드
@@ -217,14 +213,6 @@ public class DungeonController : MonoBehaviour
         _dungeonWallFront.SetActive(true);
         _dungeonWallBack.SetActive(true);
     }
-    //private void SetNormalMonsterOff()
-    //{
-    //    List<GameObject> normalMonsterPool = PoolManager.Instance.PoolList["Demon"];
-    //    for (int i = 0; i < normalMonsterPool.Count; i++)
-    //    {
-    //        normalMonsterPool[i].SetActive(false);
-    //    }
-    //}
 
     // * 던전 몬스터 관리 메서드
     private void CountMonsterDeath()

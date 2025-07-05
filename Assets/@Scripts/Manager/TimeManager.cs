@@ -74,7 +74,7 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
     #region NamedMonsterStageTimer
     public void StartNamedMonsterStage()
     {
-        _monsterTime = 100;
+        _monsterTime = 90;
         StartCoroutine(NamedMonsterTimer());
     }
 
@@ -92,6 +92,11 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
             }
             OnNamedMonsterTimeChanged?.Invoke(_monsterTime);
         }
+    }
+
+    public void StopNamedMonsterTimer()
+    {
+        StopCoroutine(NamedMonsterTimer());
     }
     #endregion
 

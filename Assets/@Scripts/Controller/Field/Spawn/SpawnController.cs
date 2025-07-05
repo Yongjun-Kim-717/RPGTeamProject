@@ -64,9 +64,8 @@ public class SpawnController : MonoBehaviour
         FieldManager.Instance.DungeonController.OnSpawnNamedMonster += SetNormalSpawnerOff;
         FieldManager.Instance.DungeonController.OnSpawnNamedMonster += SetNamedSpawnerOn;
         FieldManager.Instance.DungeonController.OnDungeonExit += SetNamedSpawnerOff;
+        FieldManager.Instance.DungeonController.OnDungeonExit += SetNormalSpawnerOff;
         FieldManager.Instance.OnJourneyEvent += SetEvent;
-        FieldManager.Instance.OnFailedDungeonClear += SetNamedSpawnerOff;
-        FieldManager.Instance.OnFailedDungeonClear += SetNormalSpawnerOff;
     }
 
     #region GenerateSpawner
@@ -80,8 +79,7 @@ public class SpawnController : MonoBehaviour
     }
     #endregion
 
-
-    #region MonsterSpawn Function
+    #region Spawner
     void SetNormalSpawnerOn()
     {
         _normalSpawner.gameObject.SetActive(true);

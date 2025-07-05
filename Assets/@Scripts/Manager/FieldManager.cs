@@ -181,14 +181,16 @@ public class FieldManager : Singleton<FieldManager>, IEventSubscriber, IDeactiva
             return Define.ItemValue.Legendary;  //5% : Legendary
     }
 
+    // * 던전 클리어 시 실행
     void SuccessDungeonClear()
     {
         _rewardSystem.GainReward(PlayerManager.Instance.Player.transform.position + Vector3.up * 3);
         PlayerManager.Instance.Player.RemovePlayerBuff(_failedCount);
         _failedCount = 0;
+        DungeonClear();
     }
 
-    // * 던전을 깨지 못했을 떄 실행되는 함수
+    // * 던전을 깨지 못했을 떄 실행되는 함수 -> 플레이어가 죽거나 시간 초과 시 실행됨
     public void FailedDungeonClear()
     {
         StageCount -= 4;
@@ -199,6 +201,15 @@ public class FieldManager : Singleton<FieldManager>, IEventSubscriber, IDeactiva
             _failedCount++;
             PlayerManager.Instance.Player.SetPlayerBuff();
         }
+        DungeonClear();
+    }
+
+    void DungeonClear()
+    {
+        //플레이어 체력 초기화
+        PlayerManager.Instance.Player.HP = PlayerManager.Instance.Player.PlayerData.HP;
+        //타이머 초기화
+        TimeManager.Instance.StopNamedMonsterTimer();
     }
 
     public void Deactivate()

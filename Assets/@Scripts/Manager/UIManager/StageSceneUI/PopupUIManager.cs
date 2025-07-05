@@ -49,15 +49,13 @@ public class PopupUIManager : Singleton<PopupUIManager>, IEventSubscriber, IDeac
     #region IEventSubscriber
     public void Subscribe()
     {
-        FieldManager.Instance.DungeonController.OnDungeonEnter += ActivateStageInfo;
         FieldManager.Instance.DungeonController.OnDungeonEnter += DeactivateJourneyInfo;
+        FieldManager.Instance.DungeonController.OnDungeonEnter += ActivateStageInfo;
+        FieldManager.Instance.DungeonController.OnSpawnNamedMonster += DeactivateStageInfo;
+        FieldManager.Instance.DungeonController.OnSpawnNamedMonster += ActivateNamedMonsterInfo;
+        FieldManager.Instance.DungeonController.OnDungeonExit += DeactivateNamedMonsterInfo;
         FieldManager.Instance.DungeonController.OnDungeonExit += DeactivateStageInfo;
         FieldManager.Instance.DungeonController.OnDungeonExit += ActivateJourneyInfo;
-        FieldManager.Instance.DungeonController.OnSpawnNamedMonster += DeactivateStageInfo;
-        //CameraManager.Instance.OnCutSceneEnded += ActivateNamedMonsterInfo;
-        //DungeonController.Instance.OnSpawnNamedMonster += ActivateNamedMonsterInfo;
-        FieldManager.Instance.DungeonController.OnDungeonClear += DeactivateNamedMonsterInfo;
-        FieldManager.Instance.OnFailedDungeonClear += DeactivateNamedMonsterInfo;
 
         _popupPanel.GetComponent<PopupUI_Panel>().OnPopupPanelClicked += DeactivatePopup;
         _panelStatus.GetComponent<PopupUI_Status>().OnExitButtonClicked += DeactivatePopup;

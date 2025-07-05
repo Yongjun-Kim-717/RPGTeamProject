@@ -36,6 +36,12 @@ public class NormalSpawnerController : MonoBehaviour
     public void SetSpawnerOff()
     {
         StopCoroutine(_spawnCoroutine);
+
+        List<GameObject> normalMonsterPool = PoolManager.Instance.PoolList["Demon"];
+        for (int i = 0; i < normalMonsterPool.Count; i++)
+        {
+            normalMonsterPool[i].SetActive(false);
+        }
     }
 
     //* 스폰 시작 코루틴

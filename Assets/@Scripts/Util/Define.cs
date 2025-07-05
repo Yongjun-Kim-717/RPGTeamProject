@@ -77,10 +77,10 @@ public class Define : MonoBehaviour
 
     #region DungeonSpots
     public static Vector3 FirstEnterSpot = new Vector3(0, 3, 0);
-    public static Vector3 DungeonEnterSpot = new Vector3(0, 5, 30);
-    public static Vector3 DungeonExitSpot = new Vector3(0, 5, 100);
-    public static Vector3 DungeonEnterPortalSpot = new Vector3(0, 2.5f, 60);
-    public static Vector3 DungeonExitPortalSpot = new Vector3(0, 2.5f, 99f);
+    public static Vector3 DungeonEnterSpot = new Vector3(0, 5, 20);
+    public static Vector3 DungeonExitSpot = new Vector3(0, 5, 90);
+    public static Vector3 DungeonEnterPortalSpot = new Vector3(0, 2.5f, 50);
+    public static Vector3 DungeonExitPortalSpot = new Vector3(0, 2.5f, 89f);
     #endregion
     
     #region MonsterSpawnSpots

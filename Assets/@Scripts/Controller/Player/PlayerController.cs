@@ -522,9 +522,18 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     void Die()
     {
-        OnPlayerDead?.Invoke();
-        _animator.SetTrigger(Define.Die);
         _animator.SetInteger(Define.DieType, UnityEngine.Random.Range(0, 2));
+        PlayerManager.Instance.IsDead = true;
+        _animator.SetTrigger(Define.Die);
+        Invoke("Revive", 2f);
+    }
+
+    void Revive()
+    {
+        HP = _playerData.HP;
+        OnPlayerDead?.Invoke();
+        PlayerManager.Instance.IsDead = false;
+        _animator.SetBool(Define.IsDead, false);
     }
 
     #endregion

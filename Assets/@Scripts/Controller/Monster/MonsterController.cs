@@ -68,6 +68,12 @@ public abstract class MonsterController : MonoBehaviour, IDamageable
         _runtimeData = new MonsterStatus(_monsterData);
     }
 
+    private void OnDisable()
+    {
+        //체력 초기화
+        _runtimeData.CurrentHP = _runtimeData.MaxHP;
+    }
+
     // * 초기화 메서드
     //- 컴포넌트 연결 및 공격 범위 오브젝트 생성
     //- 공격 이벤트에 공격 메서드 구독
