@@ -13,6 +13,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
     private Coroutine _longPressCoroutine;
     private Vector2 _toolTipOffSet = new Vector2(150, 100);
     private bool _isInInventory = false;
+    private int _slotIndex;
 
     [SerializeField] Sprite _itemImage;
     [SerializeField] TMP_Text _countText;
@@ -38,7 +39,7 @@ public class ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
         _itemData = itemData;
         _itemImage = _itemData.IconImage;
         gameObject.transform.GetChild(0).GetComponent<Image>().sprite = _itemImage;
-        _countText.enabled = itemData.Count != 0 ? true : false;
+        _countText.enabled = (itemData.Type == Define.ItemType.Equipment) ? false : (itemData.Count != 0 ? true : false);
     }
 
     public void OnPointerDown(PointerEventData eventData)

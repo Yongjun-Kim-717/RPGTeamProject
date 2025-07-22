@@ -43,10 +43,6 @@ public class DungeonController : MonoBehaviour
     {
         get { return _dungeonExitPortal; }
     }
-    //public GameObject MonsterGateList
-    //{
-    //    get { return _monsterGate; }
-    //}
     public bool IsChallenge
     {
         get { return _isChallenge; }
@@ -140,12 +136,6 @@ public class DungeonController : MonoBehaviour
         DungeonExitPortal.SetActive(false);
     }
 
-    // * 스테이지 정보 로드
-    private void SetStageInfo()
-    {
-
-    }
-
     // * 던전 생성 메서드
     public void CreateDungeon(Define.JourneyType type, Define.ItemValue value = default)
     {
@@ -161,12 +151,6 @@ public class DungeonController : MonoBehaviour
             DungeonWallBack.transform.position = Define.DungeonExitSpot;
             DungeonWallFront.transform.position = Define.DungeonEnterSpot;
         }
-    }
-
-    // * 던전 폐쇄 메서드
-    private void DestroyDungeon()
-    {
-
     }
 
     // * 포탈 입장 액션 구독 메서드

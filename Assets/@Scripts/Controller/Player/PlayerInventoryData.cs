@@ -44,6 +44,7 @@ public class Inventory
         InitializeFromSO(so);
     }
 
+    // Scriptable Object로부터 초기화
     private void InitializeFromSO(PlayerInventoryData so)
     {
         _goods[Define.GoodsType.SilverCoin] = so.SilverCoin;
@@ -65,6 +66,7 @@ public class Inventory
         OnInventorySet?.Invoke(_items);
     }
 
+    // 변경사항 Scriptable Object에 동기화
     public void ApplyChangesToSO(PlayerInventoryData so)
     {
         so.SilverCoin = _goods[Define.GoodsType.SilverCoin];
@@ -80,6 +82,7 @@ public class Inventory
         }
     }
 
+    // 아이템 추가 메서드
     public void AddItem(ItemData item,int count)
     {
         if (!_items.ContainsKey(item.Type))
@@ -101,13 +104,12 @@ public class Inventory
             }
             else
             {
-                //existItem.Count++;
                 existItem.Count += count;
             }
         }
-        //OnItemAdd?.Invoke(item.Type, Define.PendingTaskType.ItemAddTask, 1);
     }
 
+    // 아이템 추가 메서드 (매개변수 딕셔너리 : Key -> SkillData, ItemData)
     public void AddItem(Dictionary<Data,int> items)
     {
         foreach (var item in items)
@@ -129,9 +131,9 @@ public class Inventory
             if (existItem.Count <= 0)
                 _items[item.Type].Remove(existItem);
         }
-        OnItemRemove?.Invoke(item.Type, Define.PendingTaskType.ItemRemoveTask, 1);
     }
 
+    // 재화 추가 메서드
     public void AddGoods(Define.GoodsType type, int amount)
     {
         _goods[type] += amount;
@@ -139,6 +141,7 @@ public class Inventory
         OnValueChanged?.Invoke(type);
     }
 
+    // 재화 사용 메서드
     public void UseGoods(Define.GoodsType type, int amount)
     {
         _goods[type] -= amount;

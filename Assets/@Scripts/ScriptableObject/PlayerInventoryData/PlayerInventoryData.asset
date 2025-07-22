@@ -14,4 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SilverCoin: 1000
   Gem: 1000
-  Items: []
+  Items:
+  - {fileID: 11400000, guid: 5340719bc97ccfa4bbd811c650e0d9da, type: 2}
+  - {fileID: 11400000, guid: 9f9bee8cca132c7468e4f1a70ccbca0a, type: 2}
+  - {fileID: 11400000, guid: 9f9bee8cca132c7468e4f1a70ccbca0a, type: 2}
+  - {fileID: 11400000, guid: 9f9bee8cca132c7468e4f1a70ccbca0a, type: 2}
+  - {fileID: 11400000, guid: dd42d7f133b9ed5468eeaeb3398ebfeb, type: 2}
+  - {fileID: 11400000, guid: dd42d7f133b9ed5468eeaeb3398ebfeb, type: 2}
+  - {fileID: 11400000, guid: 37c5e079ae6790542a78d41af25134d4, type: 2}
+  - {fileID: 11400000, guid: ee5a6f97d2fcc7e4fbf46cd4c23accc9, type: 2}
+  - {fileID: 11400000, guid: 6b6cac7b8bb2c08469cbc72b373b617b, type: 2}
+  - {fileID: 11400000, guid: 703561a53eb9e6f45b122f0aa93e6944, type: 2}

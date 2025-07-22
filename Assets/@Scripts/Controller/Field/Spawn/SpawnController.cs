@@ -31,7 +31,7 @@ public class SpawnController : MonoBehaviour
     {
         _monsterParentPool = new GameObject("MonsterPool");
 
-        _fieldObjectSpawnSpotList = new Dictionary<string, GameObject>();
+        //_fieldObjectSpawnSpotList = new Dictionary<string, GameObject>();
         _fieldObjectList = new Dictionary<string, GameObject>();
 
         _fieldObjectSpawnSpotList = ObjectManager.Instance.FieldObjectSpawnSpotList;

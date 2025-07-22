@@ -14,7 +14,6 @@ public class NormalSpawnerController : MonoBehaviour
     private int _limitOfNormalMonsterCount = 80;
 
     private Coroutine _spawnCoroutine;
-    private GameObject _monsterParentPool;
 
     // 스포너 위치 설정
     public void SetSpawnerPos(Vector3 offSet)

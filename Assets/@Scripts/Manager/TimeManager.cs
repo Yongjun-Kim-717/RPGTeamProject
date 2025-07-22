@@ -18,7 +18,6 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
     public float _dayTime;
     Define.TimeOfDayType _currentTime;
     bool _isDoubleSpeed;
-    //bool _isPlaying = true;
     bool _isSkyBoxChange = false;
     float _toKey = 1;
 
@@ -108,7 +107,6 @@ public class TimeManager : Singleton<TimeManager>, IEventSubscriber
         {
             yield return _standardTime;
             _dayTime += 1;
-            //Debug.Log(_dayTime);
 
             if (Define.ColorChangeTimeList.TryGetValue(_dayTime, out var newColorTimeOfDay))
             {

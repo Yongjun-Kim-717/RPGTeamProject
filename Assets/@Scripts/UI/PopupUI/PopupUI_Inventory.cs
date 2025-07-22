@@ -61,18 +61,25 @@ public class PopupUI_Inventory : MonoBehaviour
         SetViewPort(Define.ItemType.Equipment);
     }
 
+    // * 초기화 메서드
+    //- Awake에서 호출
     private void Initialize()
     {
+        // 장비창 슬롯 초기화
         _equipmentItemSlots.Clear();
+
+        // 장비창 슬롯 키 생성
         foreach (Define.EquipmentItemType equipmentItemType in Enum.GetValues(typeof(Define.EquipmentItemType)))
         {
             _equipmentItemSlots.Add(equipmentItemType, null);
         }
 
+        // 아이템 슬롯 리스트 동적할당
         _itemSlots[Define.ItemType.Equipment] = new List<ItemSlot>();
         _itemSlots[Define.ItemType.Consumable] = new List<ItemSlot>();
         _itemSlots[Define.ItemType.Other] = new List<ItemSlot>();
 
+        // 버튼 클릭 리스너 연결
         _exitButton.onClick.AddListener(OnExitButtonClick);
         _equipmentItemButton.onClick.AddListener(OnEquipmentButtonClick);
         _consumeItemButton.onClick.AddListener(OnConsumeButtonClick);
@@ -101,7 +108,8 @@ public class PopupUI_Inventory : MonoBehaviour
 
             GameObject itemSlot = PoolManager.Instance.GetObjectFromPool<ItemSlot>(Vector3.zero, slotName, viewPort.GetChild(0).GetChild(0));
             itemSlot.GetComponent<ItemSlot>().SetData(itemData, true);
-            itemSlot.GetComponent<ItemSlot>().SetItemCount(itemData.Count);
+            if(itemType != Define.ItemType.Equipment)
+                itemSlot.GetComponent<ItemSlot>().SetItemCount(itemData.Count);
 
             _itemSlots[itemType].Add(itemSlot.GetComponent<ItemSlot>());
         }
@@ -202,7 +210,7 @@ public class PopupUI_Inventory : MonoBehaviour
         for (int i = 0; i < content.childCount; i++)
         {
             GameObject slotObj = content.GetChild(i).gameObject;
-            slotObj.SetActive(false); // 또는 PoolManager로 반환
+            slotObj.SetActive(false);
         }
 
         _itemSlots[itemType].Clear();
@@ -221,10 +229,9 @@ public class PopupUI_Inventory : MonoBehaviour
             _itemSlot.gameObject.transform.localPosition = Vector3.zero;
             PlayerManager.Instance.Player.ApplyItemStatus(((EquipmentItemData)(_itemSlot.ItemData)).ItemStatus);
         }
-        else
-            Debug.Log("아이템이 이미 장착되어 있습니다.");
     }
 
+    // 아이템 사용 메서드
     public void UseItem(ItemSlot _itemSlot)
     {
         PlayerManager.Instance.Player.Inventory.RemoveItem(_itemSlot.ItemData);
@@ -253,11 +260,7 @@ public class PopupUI_Inventory : MonoBehaviour
             _itemSlot.gameObject.transform.localPosition = Vector3.zero;
             PlayerManager.Instance.Player.ReleaseItemStatus(((EquipmentItemData)_itemSlot.ItemData).ItemStatus);
             _equipmentItemSlots[itemType] = null;
-            _itemSlot.SetItemCount(++(_itemSlot.ItemData.Count));
         }
-        else
-            Debug.Log("아이템이 장착되어있지 않습니다.");
-
     }
 
     // 부위별 장착 위치 반환 메서드

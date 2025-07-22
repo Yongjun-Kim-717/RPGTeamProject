@@ -16,13 +16,4 @@ public class ItemStatus
     public float HPRecoveryPerSec;          //체력회복
     public float CoolTimeDecrease;          //쿨타임 감소
     public float Speed;                     //이동속도
-
-    public void ApplyStatus(ref PlayerData playerStatus)
-    {
-        playerStatus.Atk += Atk;
-        playerStatus.Def += Def;
-        playerStatus.HP += HP;
-        playerStatus.HPRecoveryPerSec += HPRecoveryPerSec;
-        playerStatus.CoolTimeDecrease += CoolTimeDecrease;
-    }
 }
