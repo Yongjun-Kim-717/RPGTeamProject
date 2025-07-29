@@ -1,7 +1,4 @@
-using System;
 using UnityEngine;
-using extension;
-using Unity.VisualScripting;
 using UnityEngine.Audio;
 
 public class AudioManager : Singleton<AudioManager>

@@ -301,7 +301,6 @@ public class PopupUI_SkillInventory : MonoBehaviour
     #region ButtonEvents
     void OnEquipButtonClick()
     {
-        // 현재 스킬 슬롯에 이미 있는 스킬이면 경고문?
         // 현재 스킬 슬롯에 없는 스킬이면 장착
         OnEquipSkill?.Invoke(_selectedSkillData);
         SkillManager.Instance.UpdateEnhancedAttribute(EnvironmentManager.Instance.CurrentType);
@@ -311,7 +310,6 @@ public class PopupUI_SkillInventory : MonoBehaviour
     void OnReleaseButtonClick()
     {
         // 현재 스킬 슬롯에 있는 스킬이면 해제
-        // 현재 스킬 슬롯에 없는 스킬이면 경고문?
         OnReleaseSkill?.Invoke(_selectedSkillData);
         SkillManager.Instance.UpdateEnhancedAttribute(EnvironmentManager.Instance.CurrentType);
         AudioManager.Instance.PlayClickSound();

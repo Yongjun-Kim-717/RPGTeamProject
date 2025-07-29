@@ -48,12 +48,6 @@ public class HolySwordSkill : AreaTargetSkill, IRotationSkill, IDirectionSkill, 
         ActivateLastExplosion();
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position + Vector3.up, PlayerManager.Instance.Player.transform.position + Vector3.up);
-    }
-
     public void InitializeAnimationSetting()
     {
         _animator = _player.GetComponent<Animator>();

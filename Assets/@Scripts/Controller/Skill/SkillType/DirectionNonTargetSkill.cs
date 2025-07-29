@@ -20,7 +20,6 @@ public class DirectionNonTargetSkill : ActiveSkill, ICheckActivation
             base.ActivateSkill(pos);
 
             // 현재 플레이어가 바라보는 방향 == 스킬 발동 방향
-            // 플레이어 객체를 받아오는 방법 강구 필요        
             transform.rotation = _player.transform.rotation;
 
             return true;
@@ -35,15 +34,4 @@ public class DirectionNonTargetSkill : ActiveSkill, ICheckActivation
             return true;
         return _player.Target != null && Vector3.Distance(_player.Target.position, pos) <= _skillData.TargetDistance;
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, _skillData.TargetDistance);
-    //    Vector3 angle1 = new Vector3(Mathf.Sin((-_skillData.Angle / 2f + transform.eulerAngles.y) * Mathf.Deg2Rad), 0, (Mathf.Cos((-_skillData.Angle / 2f + transform.eulerAngles.y) * Mathf.Deg2Rad)));
-    //    Vector3 angle2 = new Vector3(Mathf.Sin((_skillData.Angle / 2f + transform.eulerAngles.y) * Mathf.Deg2Rad), 0, (Mathf.Cos((_skillData.Angle / 2f + transform.eulerAngles.y) * Mathf.Deg2Rad)));
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(transform.position, transform.position + angle1 * _skillData.TargetDistance);
-    //    Gizmos.DrawLine(transform.position, transform.position + angle2 * _skillData.TargetDistance);
-    //}
 }
